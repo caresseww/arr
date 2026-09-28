@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>新生儿心律失常 · 住院医师读本</title>
+<style>
+:root{
+  --navy:#16324f;--navy2:#1a3a5c;--navy3:#2c5282;
+  --amber:#b8863b;--amber-bg:#fdf6e9;
+  --red:#c0392b;--red-bg:#fdf0ef;
+  --green:#1e8449;--green-bg:#eafaf1;
+  --blue:#2471a3;--blue-bg:#ebf5fb;
+  --gray:#5d6d7e;--gray-light:#dfe4e9;--gray-bg:#f4f6f8;
+  --line:#e3e8ed;--text:#1c2833;--text2:#44515f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Songti SC","Microsoft YaHei",sans-serif;background:#fafbfc;color:var(--text);line-height:1.95;font-size:15.5px}
+
+/* ===== 布局：左侧目录 + 正文 ===== */
+.layout{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;padding:0 24px}
+.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:28px 0 40px;font-size:12.5px}
+.toc .brand{font-weight:800;color:var(--navy);font-size:14.5px;line-height:1.5;padding-bottom:10px;border-bottom:2px solid var(--navy);margin-bottom:12px}
+.toc .brand small{display:block;color:var(--gray);font-weight:500;font-size:11px;margin-top:3px}
+.toc .grp{margin:13px 0 4px;font-weight:800;color:var(--navy3);letter-spacing:.5px}
+.toc a{display:block;color:var(--text2);text-decoration:none;padding:3px 0 3px 12px;border-left:2px solid transparent;line-height:1.55}
+.toc a:hover{color:var(--navy)}
+.toc a.on{color:var(--amber);border-left-color:var(--amber);font-weight:700}
+.doc{padding:34px 0 90px;max-width:780px}
+
+@media(min-width:1001px){.drawer,.mask{display:none!important}}
+
+/* ===== 移动端：顶栏 + 章节条 + 抽屉目录 ===== */
+.mtop{display:none;position:sticky;top:0;z-index:60;align-items:center;gap:10px;height:calc(48px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 14px 0;background:var(--navy);box-shadow:0 1px 8px rgba(0,0,0,.18)}
+.mtop .brand2{color:#fff;font-weight:800;font-size:14px;letter-spacing:.3px;flex-shrink:0}
+.mtop .cur{flex:1;min-width:0;color:#9db0c2;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtop .menu{flex-shrink:0;background:rgba(255,255,255,.14);color:#fff;font-size:12.5px;font-weight:700;padding:6px 14px;border-radius:15px;cursor:pointer;border:none}
+.chips{display:none;position:sticky;top:calc(48px + env(safe-area-inset-top));z-index:59;background:var(--navy);gap:6px;padding:0 10px 9px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:0 0 auto;color:#c6d2dd;font-size:12px;font-weight:600;padding:4px 12px;border-radius:13px;background:rgba(255,255,255,.08);text-decoration:none;white-space:nowrap}
+.chips a.on{background:var(--amber);color:#fff}
+.mask{display:none;position:fixed;inset:0;background:rgba(8,18,30,.55);z-index:70}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,85vw);background:#fff;z-index:71;transform:translateX(105%);transition:transform .25s ease;overflow-y:auto;padding:16px 16px 44px;box-shadow:-6px 0 24px rgba(0,0,0,.2)}
+.drawer .dbrand{font-weight:800;color:var(--navy);font-size:14.5px;line-height:1.5;padding-bottom:10px;border-bottom:2px solid var(--navy);margin-bottom:10px}
+.drawer .dbrand small{display:block;color:var(--gray);font-weight:500;font-size:11px;margin-top:2px}
+.drawer .grp{margin:13px 0 4px;font-weight:800;color:var(--navy3);font-size:12.5px;letter-spacing:.5px}
+.drawer a{display:block;color:var(--text2);text-decoration:none;font-size:13px;padding:7px 0 7px 12px;border-left:2px solid transparent;line-height:1.5}
+.drawer a.on{color:var(--amber);border-left-color:var(--amber);font-weight:700}
+body.navopen{overflow:hidden}
+body.navopen .mask{display:block}
+body.navopen .drawer{transform:none}
+
+/* ===== 翻页模式 ===== */
+.pg{display:block}
+.pbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:58;background:#fff;border-top:1px solid var(--line);padding:8px 10px calc(8px + env(safe-area-inset-bottom));gap:8px;align-items:stretch;box-shadow:0 -2px 12px rgba(15,41,66,.1)}
+.pbar button{flex:0 0 auto;border:none;background:var(--navy2);color:#fff;font-size:13px;font-weight:700;padding:10px 15px;border-radius:10px;cursor:pointer}
+.pbar button:disabled{background:var(--gray-light);color:var(--gray);cursor:default}
+.pbar .pind{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.pbar .pind b{font-size:12.5px;color:var(--navy);font-family:"SF Mono",Menlo,monospace}
+.pbar .pind span{font-size:11px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+body.longshot .pg{display:block!important}
+body.longshot .pbar{display:none!important}
+body.longshot .chips{display:none!important}
+
+@media(max-width:1000px){
+  body.pagemode .pg{display:none}
+  body.pagemode .pg.on{display:block}
+  body.pagemode .pbar{display:flex}
+  body.pagemode .doc{padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+}
+
+@media(max-width:1000px){
+  .layout{grid-template-columns:1fr;gap:0;padding:0}
+  .toc{display:none}
+  .mtop{display:flex}
+  .chips{display:flex}
+  .doc{padding:16px 15px 80px;max-width:none;min-width:0}
+  html{scroll-padding-top:calc(102px + env(safe-area-inset-top))}
+  body{font-size:15px}
+  .doc-head h1{font-size:22px}
+  .ch h2{font-size:21px}
+  .ch{margin-top:48px}
+  h3{font-size:16.5px;margin:26px 0 8px}
+  table{font-size:11.5px}
+  th,td{padding:7px 7px}
+  .howto{padding:13px 15px}
+  .sum{padding:16px 17px}
+}
+
+/* ===== 文头 ===== */
+.doc-head{padding:8px 0 18px;border-bottom:3px solid var(--navy)}
+.doc-head h1{font-size:27px;font-weight:800;color:var(--navy);letter-spacing:1px;line-height:1.4}
+.doc-head .sub{color:var(--gray);font-size:13px;margin-top:6px}
+.howto{border:1px solid var(--line);background:#fff;border-radius:12px;padding:16px 20px;margin:20px 0 4px}
+.howto h3{margin:0 0 8px;font-size:14.5px;color:var(--navy)}
+.howto li{margin:5px 0;font-size:13.5px}
+.howto a{color:var(--blue);font-weight:700;text-decoration:none}
+
+/* ===== 章节层级 ===== */
+.ch{margin-top:64px;padding-top:10px;border-top:3px solid var(--navy)}
+.ch .k{font-size:12.5px;letter-spacing:4px;color:var(--amber);font-weight:800}
+.ch h2{font-size:25px;font-weight:800;color:var(--navy);margin:2px 0 4px;letter-spacing:.5px}
+.ch .lead{color:var(--gray);font-size:13.5px;margin-bottom:14px;max-width:70ch}
+h3{font-size:17.5px;font-weight:800;color:var(--navy);margin:34px 0 10px;line-height:1.55;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h3 .sn{font-family:"SF Mono",Menlo,monospace;font-size:13.5px;color:var(--amber);font-weight:800;flex-shrink:0}
+h3 small{font-size:11.5px;color:var(--gray);font-weight:500}
+h4{font-size:14px;font-weight:800;color:var(--navy3);margin:18px 0 6px;padding-left:9px;border-left:3px solid var(--amber)}
+h4 .why{font-size:11px;color:var(--amber);font-weight:700;margin-left:6px}
+p{margin:8px 0;max-width:76ch}
+strong{font-weight:700;color:var(--navy)}
+em{font-style:normal;color:var(--red);font-weight:700}
+a.x{color:var(--blue);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--blue)}
+.mono{font-family:"SF Mono",Menlo,monospace;font-weight:700;color:var(--blue);font-size:.94em}
+ol,ul{padding-left:24px;max-width:74ch}
+li{margin:6px 0}
+.blk{border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:14px 0;background:#fff}
+.blk>p:first-child{margin-top:0}
+.blk>p:last-child{margin-bottom:0}
+
+/* 功能色框 */
+.box{border-left:4px solid var(--gray);border-radius:0 8px 8px 0;padding:11px 15px;margin:14px 0;background:var(--gray-bg);max-width:76ch}
+.box .tag{font-size:10.5px;font-weight:800;letter-spacing:1.5px;margin-bottom:3px;color:var(--gray)}
+.box .text{font-size:13.5px;line-height:1.85;color:var(--text2)}
+.box.warn{border-color:var(--red);background:var(--red-bg)}
+.box.warn .tag{color:var(--red)}
+.box.warn .text{color:#7b241c}
+.box.warn strong{color:var(--red)}
+.box.tip{border-color:var(--green);background:var(--green-bg)}
+.box.tip .tag{color:var(--green)}
+.box.tip .text{color:#1e5631}
+.box.mn{border-color:var(--amber);background:var(--amber-bg)}
+.box.mn .tag{color:var(--amber)}
+.box.mn .text{color:#6b5a2e;font-weight:600;font-size:14px}
+.box.info{border-color:var(--blue);background:var(--blue-bg)}
+.box.info .tag{color:var(--blue)}
+.box.info .text{color:#1a3a5c}
+
+/* 表格 */
+.tblwrap{overflow-x:auto;margin:14px 0}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+th{background:var(--navy);color:#fff;padding:9px 9px;text-align:left;font-weight:600;font-size:12px;line-height:1.5}
+td{padding:9px 9px;border-top:1px solid var(--line);vertical-align:top;line-height:1.75}
+tr:nth-child(even) td{background:#f8fafb}
+td.n{font-weight:800;color:var(--navy);white-space:nowrap}
+td .mono,td .mono-cell{font-size:11.5px}
+.mono-cell{font-family:"SF Mono",Menlo,monospace;color:var(--blue);font-weight:700}
+tr.ban-row td{background:var(--red-bg)!important}
+tr.ban-row td.n{color:var(--red)}
+
+/* 读图 */
+.ecg-box{border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0;background:#fff;max-width:76ch}
+.ecg-title{font-size:12px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.ecg-box svg{width:100%;height:auto;display:block}
+.ecg-caption{font-size:11.5px;color:var(--gray);margin-top:6px;line-height:1.6}
+.ecg-wave{fill:none;stroke:var(--navy);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ecg-grid-line{stroke:#e8ecf0;stroke-width:.5}
+.ecg-anno-line{stroke:var(--amber);stroke-width:1;stroke-dasharray:3,2}
+.ecg-anno-text{font-size:10px;font-weight:700;fill:var(--amber)}
+
+/* 随访时间轴 */
+.tl{position:relative;padding-left:26px;margin:14px 0;max-width:74ch}
+.tl::before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:2.5px;background:var(--gray-light);border-radius:2px}
+.tl-item{position:relative;margin-bottom:13px}
+.tl-item::before{content:"";position:absolute;left:-23px;top:8px;width:10px;height:10px;background:var(--amber);border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 2px var(--amber)}
+.tl-item b{color:var(--amber);font-size:13.5px}
+.tl-item span{display:block;font-size:13px;color:var(--text2)}
+
+/* 口袋卡 */
+.sum{background:var(--navy);color:#fff;border-radius:14px;padding:22px 26px;margin:18px 0}
+.sum h3{color:var(--amber);margin:0 0 10px}
+.sum ol{padding-left:22px}
+.sum li{font-size:14px;color:#d5dbdb;margin:8px 0}
+.sum li strong{color:#fff}
+.sum .box{background:rgba(201,166,107,.12);border-color:var(--amber)}
+.sum .box .text{color:#f2e3c4}
+
+footer{border-top:1px solid var(--line);margin-top:70px;padding:22px 0 40px;text-align:center;font-size:11.5px;color:var(--gray);line-height:2}
+@media print{.toc{display:none}.layout{display:block}.doc{max-width:none;padding:0}}
+</style>
+</head>
+<body>
+
+<!-- 移动端顶栏 + 章节条 + 抽屉目录 -->
+<header class="mtop">
+  <div class="brand2">心律失常读本</div>
+  <div class="cur" id="mcur">导读</div>
+  <button class="menu" id="lsBtn">⛶ 长图</button>
+  <button class="menu" id="menuBtn">☰ 目录</button>
+</header>
+<div class="chips" id="chips">
+  <a href="#top" data-ch="top">导读</a>
+  <a href="#c1" data-ch="c1">一 总论</a>
+  <a href="#c2" data-ch="c2">二 基础</a>
+  <a href="#c3" data-ch="c3">三 方法</a>
+  <a href="#c4" data-ch="c4">四 急症</a>
+  <a href="#c5" data-ch="c5">五 各论</a>
+  <a href="#c6" data-ch="c6">六 治疗学</a>
+  <a href="#c7" data-ch="c7">七 长期</a>
+  <a href="#cx" data-ch="cx">附录</a>
+</div>
+<div class="mask" id="mask"></div>
+<nav class="drawer" id="drawer">
+  <div class="dbrand">新生儿心律失常 · 住院医师读本<small>深度版 v4.2 · 2026-09-28</small></div>
+  <a href="#top">导读 · 三种读法</a>
+  <div class="grp">一 · 总论</div>
+  <a href="#c1-1">1.1 疾病谱与发病率</a>
+  <a href="#c1-2">1.2 新生儿 ≠ 缩小的儿童</a>
+  <a href="#c1-3">1.3 三大电生理机制</a>
+  <div class="grp">二 · 基础</div>
+  <a href="#c2-1">2.1 电生理基础</a>
+  <a href="#c2-2">2.2 正常值与发育特点</a>
+  <a href="#c2-3">2.3 各波与间期的意义</a>
+  <a href="#c2-4">2.4 床旁测量方法</a>
+  <div class="grp">三 · 方法</div>
+  <a href="#c3-1">3.1 五步分析法</a>
+  <a href="#c3-2">3.2 七型鉴别总表</a>
+  <a href="#c3-3">3.3 两个经典伪装</a>
+  <div class="grp">四 · 急症处理</div>
+  <a href="#c4-1">4.1 第一分钟五件事</a>
+  <a href="#c4-2">4.2 稳定性评估</a>
+  <a href="#c4-3">4.3 不稳定 → 电复律</a>
+  <a href="#c4-4">4.4 稳定 → 分路用药</a>
+  <a href="#c4-5">4.5 SVT 三步法</a>
+  <a href="#c4-6">4.6 心跳骤停：NRP</a>
+  <a href="#c4-7">4.7 可逆因素</a>
+  <a href="#c4-8">4.8 呼叫上级的红线</a>
+  <div class="grp">五 · 各论（八型）</div>
+  <a href="#d-svt">5.1 SVT</a>
+  <a href="#d-afl">5.2 房扑 / 房颤</a>
+  <a href="#d-at">5.3 房速 AT</a>
+  <a href="#d-jet">5.4 JET</a>
+  <a href="#d-cavb">5.5 cAVB</a>
+  <a href="#d-lqts">5.6 LQTS</a>
+  <a href="#d-vt">5.7 VT / VF</a>
+  <a href="#d-pac">5.8 良性早搏</a>
+  <div class="grp">六 · 治疗学</div>
+  <a href="#c6-1">6.1 药物分类总览</a>
+  <a href="#c6-2">6.2 完整药物卡（16 药）</a>
+  <a href="#c6-3">6.3 电复律与除颤</a>
+  <a href="#c6-4">6.4 起搏治疗</a>
+  <a href="#c6-5">6.5 绝对禁忌与陷阱</a>
+  <a href="#c6-6">6.6 用药前必查</a>
+  <div class="grp">七 · 长期管理</div>
+  <a href="#c7-1">7.1 随访节奏</a>
+  <a href="#c7-2">7.2 停药评估与转归</a>
+  <div class="grp">附录 · 查表</div>
+  <a href="#apA">A 体重换算速查表</a>
+  <a href="#apB">B 急救剂量速查卡</a>
+  <a href="#apC">C 值班口袋卡</a>
+  <a href="#apD">D 版本与参考</a>
+</nav>
+
+<!-- 翻页栏（手机翻页模式） -->
+<nav class="pbar" id="pbar">
+  <button id="pvBtn">‹ 上一页</button>
+  <div class="pind"><b id="pNum">1 / 9</b><span id="pTitle">一 总论</span></div>
+  <button id="nxBtn">下一页 ›</button>
+</nav>
+
+<div class="layout">
+
+<!-- ================= 左侧目录 ================= -->
+<nav class="toc">
+  <div class="brand">新生儿心律失常<br>住院医师读本<small>深度版 v4.2 · 2026-09-28</small></div>
+  <a href="#top">导读 · 三种读法</a>
+  <div class="grp">一 · 总论</div>
+  <a href="#c1-1">1.1 疾病谱与发病率</a>
+  <a href="#c1-2">1.2 新生儿 ≠ 缩小的儿童</a>
+  <a href="#c1-3">1.3 三大电生理机制</a>
+  <div class="grp">二 · 基础</div>
+  <a href="#c2-1">2.1 电生理基础</a>
+  <a href="#c2-2">2.2 正常值与发育特点</a>
+  <a href="#c2-3">2.3 各波与间期的意义</a>
+  <a href="#c2-4">2.4 床旁测量方法</a>
+  <div class="grp">三 · 方法</div>
+  <a href="#c3-1">3.1 五步分析法</a>
+  <a href="#c3-2">3.2 七型鉴别总表</a>
+  <a href="#c3-3">3.3 两个经典伪装</a>
+  <div class="grp">四 · 急症处理</div>
+  <a href="#c4-1">4.1 第一分钟五件事</a>
+  <a href="#c4-2">4.2 稳定性评估</a>
+  <a href="#c4-3">4.3 不稳定 → 电复律</a>
+  <a href="#c4-4">4.4 稳定 → 分路用药</a>
+  <a href="#c4-5">4.5 SVT 三步法</a>
+  <a href="#c4-6">4.6 心跳骤停：NRP</a>
+  <a href="#c4-7">4.7 可逆因素</a>
+  <a href="#c4-8">4.8 呼叫上级的红线</a>
+  <div class="grp">五 · 各论（八型）</div>
+  <a href="#d-svt">5.1 SVT</a>
+  <a href="#d-afl">5.2 房扑 / 房颤</a>
+  <a href="#d-at">5.3 房速 AT</a>
+  <a href="#d-jet">5.4 JET</a>
+  <a href="#d-cavb">5.5 cAVB</a>
+  <a href="#d-lqts">5.6 LQTS</a>
+  <a href="#d-vt">5.7 VT / VF</a>
+  <a href="#d-pac">5.8 良性早搏</a>
+  <div class="grp">六 · 治疗学</div>
+  <a href="#c6-1">6.1 药物分类总览</a>
+  <a href="#c6-2">6.2 完整药物卡（16 药）</a>
+  <a href="#c6-3">6.3 电复律与除颤</a>
+  <a href="#c6-4">6.4 起搏治疗</a>
+  <a href="#c6-5">6.5 绝对禁忌与陷阱</a>
+  <a href="#c6-6">6.6 用药前必查</a>
+  <div class="grp">七 · 长期管理</div>
+  <a href="#c7-1">7.1 随访节奏</a>
+  <a href="#c7-2">7.2 停药评估与转归</a>
+  <div class="grp">附录 · 查表</div>
+  <a href="#apA">A 体重换算速查表</a>
+  <a href="#apB">B 急救剂量速查卡</a>
+  <a href="#apC">C 值班口袋卡</a>
+  <a href="#apD">D 版本与参考</a>
+</nav>
+
+<!-- ================= 正文 ================= -->
+<main class="doc" id="top">
+
+<!-- ===== 翻页：第1页 导读+总论 ===== -->
+<section class="pg on" id="pg1" data-title="一 总论">
+<div class="doc-head">
+  <h1>新生儿心律失常住院医师读本</h1>
+  <div class="sub">深度版 v4.2 · 覆盖出生后 28 天 · 仅供专业医务人员参考，具体诊疗请结合临床判断与上级医师指导</div>
+</div>
+
+<div class="howto">
+  <h3>导读 · 这本读本有三种读法</h3>
+  <ul>
+    <li><strong>正在处理病人</strong> → 直接翻 <a class="x" href="#c4">第四章 急症处理</a>（流程），剂量查 <a class="x" href="#apA">附录 A</a> / <a class="x" href="#apB">附录 B</a>。</li>
+    <li><strong>想系统学会这个专题</strong> → 从第一章顺读：总论给你地图，基础给你底座，方法给你框架，各论给你深度。</li>
+    <li><strong>查某一型 / 某个药</strong> → 顶部「目录」或章节条跳转；八型各论在第五章，16 药完整卡在 <a class="x" href="#c6-2">6.2</a>。</li>
+  </ul>
+  <p style="font-size:12.5px;color:var(--gray);margin:8px 0 0">全文约定：剂量均为新生儿标准，给药前双人核对；QTc 一律按 Bazett 校正；正文交叉引用可点击跳转。</p>
+</div>
+
+<!-- ==================================================== 第一章 -->
+<div class="ch" id="c1">
+  <div class="k">第一章</div>
+  <h2>总论：新生儿心律失常的世界</h2>
+  <div class="lead">先建立全局：这个年龄段会发生什么、和儿童成人有什么本质不同、所有心律失常共享的三种机制——后面所有章节都建立在这三块地基上。</div>
+
+  <h3 id="c1-1"><span class="sn">1.1</span>疾病谱与发病率</h3>
+  <p>新生儿心律失常的构成与儿童成人完全不同：<strong>大多数是良性的</strong>，病理性心律失常里以室上性为主，室性心律失常罕见但致命。</p>
+  <div class="tblwrap">
+  <table>
+    <tr><th>类型</th><th>占比 / 发病率</th><th>性质</th><th>一句话定位</th></tr>
+    <tr><td class="n">良性早搏（PAC/PVC）</td><td>占全部新生儿心律失常 <strong>71.4%</strong></td><td>良性</td><td>最常遇到，绝大多数不用治</td></tr>
+    <tr><td class="n">SVT 室上速</td><td>发病率 1:250–1:1000</td><td>可急可稳</td><td><strong>最常见病理性心律失常</strong>，90% 为旁路介导</td></tr>
+    <tr><td class="n">房扑 / 房颤</td><td>占快速心律失常 18%</td><td>可急可稳</td><td>房扑相对多见；房颤极罕见（想 Ebstein / WPW）</td></tr>
+    <tr><td class="n">房速 AT</td><td>占快速心律失常 5–10%</td><td>多慢性</td><td>无休止性可致心动过速性心肌病</td></tr>
+    <tr><td class="n">JET 交界性异位速</td><td>先心术后 5–22%</td><td>术后为主</td><td>先心术后 24–72h 的经典问题</td></tr>
+    <tr><td class="n">cAVB 完全房室阻滞</td><td>1:15000–1:20000</td><td>危险</td><td>60% 与母体抗 Ro/La 抗体相关</td></tr>
+    <tr><td class="n">LQTS 长 QT</td><td>约 1:2000；占非良性心律失常 10.7%</td><td>危险</td><td>QTc&gt;470 即干预；TdP 首选镁盐</td></tr>
+    <tr><td class="n">VT / VF 室速室颤</td><td>罕见</td><td>致命</td><td>多为继发性——心肌炎、电解质、药物</td></tr>
+    <tr><td class="n">显著心律失常合计</td><td>约 1:4000</td><td>—</td><td>需要干预的比例不高，但识别不能漏</td></tr>
+  </table>
+  </div>
+  <p>这张谱系表给读者的第一课：<strong>遇到新生儿心律失常，先验概率最高的是"不用治的早搏"，最不能漏的是 cAVB、LQTS 和 VT。</strong>后续章节反复回到这个框架。</p>
+
+  <h3 id="c1-2"><span class="sn">1.2</span>新生儿 ≠ 缩小的儿童：八组差异与六条底层原因</h3>
+  <p>这些差异直接决定判读阈值、用药剂量和复苏流程——是整本读本的底层逻辑，后面各章不再重复解释。</p>
+  <div class="tblwrap">
+  <table>
+    <tr><th>维度</th><th>✅ 新生儿</th><th>❌ 儿童 / 成人（不要照搬）</th></tr>
+    <tr><td class="n">SVT 阈值</td><td>心率 &gt;<strong>220</strong> 才考虑病理性 SVT</td><td>&gt;180 即考虑 SVT</td></tr>
+    <tr><td class="n">机制谱</td><td>90% SVT 为 AVRT，<strong>40% 旁路 1 岁内自行消失</strong></td><td>SVT 复发率高，常需射频消融根治</td></tr>
+    <tr><td class="n">迷走反射</td><td>迷走张力高，<strong>冰水敷面效果好</strong></td><td>迷走刺激方法更多（Valsalva 等），效果有限</td></tr>
+    <tr><td class="n">药物代谢</td><td>肝肾功能未成熟，<strong>地高辛半衰期延长需减量</strong></td><td>代谢正常，按标准剂量</td></tr>
+    <tr><td class="n">β 阻滞剂</td><td>更易致<strong>低血糖</strong>（糖原动员依赖 β2）</td><td>低血糖风险低</td></tr>
+    <tr><td class="n">复苏</td><td>按 <strong>NRP：通气优先，3:1</strong></td><td>按 PALS：按压优先，15:2</td></tr>
+    <tr><td class="n">消融</td><td>射频消融极少使用，需严格个体化</td><td>体重 ≥15kg 可常规射频消融</td></tr>
+    <tr><td class="n">间期</td><td>PR 较短（0.08–0.12s），QRS 较窄</td><td>PR 0.12–0.20s，QRS &lt;0.10s</td></tr>
+  </table>
+  </div>
+  <h4>差异背后的六条底层原因</h4>
+  <ol>
+    <li><strong>心肌依赖外源钙 → 维拉帕米禁忌。</strong>新生儿心肌肌浆网发育不全，收缩高度依赖经 L 型钙通道的细胞外钙内流——钙通道阻滞剂等于直接抽掉收缩力。儿童 &gt;1 岁肌浆网成熟后才可用。</li>
+    <li><strong>传导系统是"半成品" → 自愈率高。</strong>房室结双径路未建立（AVNRT &lt;10%）、异位灶自律性偏高（早搏占 71.4%）、旁路多为暂时性通路（40% 一年内消失）。很多心律失常的本质是"还没长好"，会随成熟消失——这是保守治疗的底层依据。</li>
+    <li><strong>肝肾未成熟 → 地高辛减量。</strong>清除慢、半衰期延长，负荷与维持都按新生儿标准，并监测血药浓度。</li>
+    <li><strong>糖原动员依赖 β2 → β 阻滞剂盯血糖。</strong>糖原储备少，升血糖的糖原分解通路依赖 β2 受体——β 阻滞剂 + 禁食 / 感染 = 低血糖。</li>
+    <li><strong>骤停多为呼吸源 → CPR 通气优先。</strong>新生儿心跳骤停多是窒息 / 呼吸问题的终点——所以 NRP 通气优先、3:1、90 次/分。</li>
+    <li><strong>迷走张力占优势 → 冰水敷面是一线。</strong>副交感占优，潜水反射能迅速拖慢房室结——成人几乎无效的物理方法，在新生儿是一线手段。</li>
+  </ol>
+
+  <h3 id="c1-3"><span class="sn">1.3</span>三大电生理机制：一切心律失常的地图</h3>
+  <p>新生儿心律失常无论表现多复杂，电生理机制只有三种。<strong>机制决定用药</strong>——这是全本读本最重要的一张地图。</p>
+  <div class="blk">
+    <p><strong>① 折返（Reentry）：</strong>激动在环形通路中循环往复。<strong>折返的三要素：</strong>环形传导通路 + 通路某段单向阻滞 + 缓慢传导（其余部分已恢复应激）——本质是"传导速度不均一 + 不应期差异"。<strong>代表：</strong>SVT（AVRT / AVNRT）、房扑、典型 VT。</p>
+    <p><strong>② 自律性增高：</strong>非起搏细胞（心房 / 心室 / 交界区）4 相自动除极异常加速，超过窦房结成为主导节律。<strong>代表：</strong>房速 AT、交界速 JET、室性逸搏 / 加速。</p>
+    <p><strong>③ 触发活动：</strong>动作电位后出现异常后除极（EAD / DAD），达到阈电位触发新激动，<strong>与钙超载、QT 延长相关</strong>。<strong>代表：</strong>TdP（尖端扭转型室速）、地高辛中毒心律失常。</p>
+  </div>
+  <div class="box info">
+    <div class="tag">为什么机制决定用药</div>
+    <div class="text"><em>折返性</em>对腺苷 / 电复律敏感——延长不应期即打断折返环；<em>自律性增高</em>对腺苷不敏感——腺苷只作用于房室结、不影响异位灶，需用抑制 4 相自律性的药物（β 阻滞剂 / 胺碘酮 / 氟卡尼）；<em>触发活动（TdP）</em>首选镁盐（抑制后除极），禁用延长 QT 的药物。动作电位层面的解释见 <a class="x" href="#c2-1">2.1</a>。</div>
+  </div>
+</div>
+
+</section>
+
+<!-- ===== 翻页：第2页 基础 ===== -->
+<section class="pg" id="pg2" data-title="二 基础">
+<!-- ==================================================== 第二章 -->
+<div class="ch" id="c2">
+  <div class="k">第二章</div>
+  <h2>基础：读懂新生儿心电图</h2>
+  <div class="lead">判断的前提是知道"正常"。本章给四样东西：电生理底座、正常值、每个波的意义、床旁测量方法。</div>
+
+  <h3 id="c2-1"><span class="sn">2.1</span>电生理基础：动作电位与不应期</h3>
+  <div class="blk">
+    <p><strong>0 相（除极）：</strong>心房、心室、希浦系肌细胞靠快钠通道开放除极——钠通道阻滞剂（I 类）作用于这里减慢传导；<strong>窦房结和房室结是钙依赖的慢反应细胞</strong>，0 相上升慢、传导慢——所以房室结是心房的"闸门"，腺苷（延长不应期）在这里起作用。</p>
+    <p><strong>2–3 相（复极）：</strong>钾外流逐渐完成复极，对应 ECG 的 QT 间期。复极延长 → 3 相出现<strong>早期后除极（EAD）</strong>→ 触发活动 → TdP。钾通道阻滞剂（III 类，胺碘酮 / 索他洛尔）延长复极——所以它们能终止折返，但也延长 QT，LQTS 禁用。</p>
+    <p><strong>4 相（舒张期自动除极）：</strong>自律性的来源。窦房结 4 相除极最快所以是主导起搏点；心房、交界区、心室都有潜在起搏能力，正常时被"超速抑制"——它们的 4 相除极异常加速，就是<strong>自律性增高型心律失常</strong>（AT / JET / 室性逸搏）。</p>
+    <p><strong>不应期：</strong>动作电位期间心肌对新刺激无反应。房室结不应期最长——它是保护心室的闸门，也是折返最容易被"卡住"的位置。</p>
+  </div>
+
+  <h3 id="c2-2"><span class="sn">2.2</span>正常值与发育特点</h3>
+  <p>足月儿清醒心率 <strong>110–160</strong>；PR <span class="mono">0.08–0.12s</span>（比成人短——房室结传导通路尚未拉长）；QRS <span class="mono">&lt;0.08s</span>；QTc <span class="mono">&lt;470ms</span>；II 导 P 正向、aVR 负向。<em>发育特点：</em>新生儿窦房结固有频率高于成人（所以 220 才是 SVT 的门槛，见 <a class="x" href="#c1-2">1.2</a>）；P 波小、T 波可 V1 倒置。</p>
+  <div class="ecg-box">
+    <div class="ecg-title">正常窦性心律 · 单周期标注</div>
+    <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <line x1="0" y1="55" x2="800" y2="55" class="ecg-grid-line"/><line x1="0" y1="110" x2="800" y2="110" class="ecg-grid-line"/><line x1="0" y1="165" x2="800" y2="165" class="ecg-grid-line"/>
+        <line x1="100" y1="20" x2="100" y2="200" class="ecg-grid-line"/><line x1="250" y1="20" x2="250" y2="200" class="ecg-grid-line"/><line x1="400" y1="20" x2="400" y2="200" class="ecg-grid-line"/><line x1="550" y1="20" x2="550" y2="200" class="ecg-grid-line"/><line x1="700" y1="20" x2="700" y2="200" class="ecg-grid-line"/>
+      </g>
+      <path class="ecg-wave" d="M 20,110 L 80,110 Q 95,95 110,110 L 140,110 L 150,110 L 158,60 L 163,140 L 170,110 L 230,110 Q 260,85 290,110 L 340,110 L 400,110 Q 415,95 430,110 L 460,110 L 470,110 L 478,60 L 483,140 L 490,110 L 550,110 Q 580,85 610,110 L 660,110 L 720,110 Q 735,95 750,110 L 780,110"/>
+      <line x1="110" y1="95" x2="110" y2="30" class="ecg-anno-line"/><text x="110" y="25" text-anchor="middle" class="ecg-anno-text">P 波</text>
+      <line x1="95" y1="130" x2="95" y2="155" class="ecg-anno-line"/><line x1="158" y1="130" x2="158" y2="155" class="ecg-anno-line"/><line x1="95" y1="148" x2="158" y2="148" class="ecg-anno-line"/>
+      <text x="126" y="170" text-anchor="middle" class="ecg-anno-text">PR 0.08–0.12s</text>
+      <line x1="158" y1="55" x2="158" y2="25" class="ecg-anno-line"/><text x="158" y="20" text-anchor="middle" class="ecg-anno-text">QRS</text>
+      <line x1="290" y1="80" x2="290" y2="30" class="ecg-anno-line"/><text x="290" y="25" text-anchor="middle" class="ecg-anno-text">T 波</text>
+      <line x1="158" y1="175" x2="158" y2="185" class="ecg-anno-line"/><line x1="310" y1="175" x2="310" y2="185" class="ecg-anno-line"/><line x1="158" y1="182" x2="310" y2="182" class="ecg-anno-line"/>
+      <text x="234" y="200" text-anchor="middle" class="ecg-anno-text">QTc = QT/√RR · 正常 &lt;470ms</text>
+      <text x="470" y="140" text-anchor="middle" class="ecg-anno-text">QRS 宽度 &lt;0.08s</text>
+    </svg>
+    <div class="ecg-caption">网格：小格 1mm = 0.04s / 0.1mV（走纸 25mm/s 时）</div>
+  </div>
+
+  <h3 id="c2-3"><span class="sn">2.3</span>各波与间期的意义</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:78px">波形/间期</th><th style="width:130px">电生理事件</th><th style="width:160px">新生儿正常值</th><th>异常提示</th></tr>
+    <tr><td class="n">P 波</td><td>心房除极</td><td>II 正向、aVR 负向；宽 &lt;0.08s</td><td>形态异常 → 异位房速 / 房扑；消失 → 交界性 / 室性心律；高尖 → 右房大</td></tr>
+    <tr><td class="n">PR 间期</td><td>房室传导时间</td><td><span class="mono">0.08–0.12s</span></td><td>延长 → 一度 AVB；缩短 → 预激（WPW）；逐渐延长 → 二度 I 型</td></tr>
+    <tr><td class="n">QRS 波</td><td>心室除极</td><td>宽 <span class="mono">&lt;0.08s</span></td><td>增宽 → 室性心律 / 差传 / 预激；畸形 → VT；低电压 → 心包积液 / 水肿</td></tr>
+    <tr><td class="n">ST 段</td><td>除极完毕 → 复极开始</td><td>等电位（偏移 &lt;0.1mV）</td><td>抬高 → 心肌缺血 / 心包炎；压低 → 缺血 / 地高辛效应</td></tr>
+    <tr><td class="n">T 波</td><td>心室复极</td><td>与 QRS 主波同向；V1 可倒置</td><td>高尖 → 高钾 / 超急缺血；低平倒置 → 缺血 / 低钾；切迹 → LQT2</td></tr>
+    <tr><td class="n">QTc</td><td>除极 + 复极总时间</td><td><span class="mono">&lt;470ms</span></td><td>&gt;470 → LQTS；&gt;500 高危；伴 2:1 阻滞 → 极高危</td></tr>
+    <tr><td class="n">RR 间期</td><td>心动周期（心率=60/RR）</td><td>规则（窦性心律不齐时轻度变异）</td><td>绝对规则 + 快 → SVT；绝对不齐 → 房颤 / 早搏；规则而慢 → cAVB</td></tr>
+  </table>
+  </div>
+
+  <h3 id="c2-4"><span class="sn">2.4</span>床旁测量方法</h3>
+  <div class="blk">
+    <p><strong>走纸速度：</strong>常规 25mm/s——小格 0.04s、大格 0.2s。<strong>新生儿病房常用 50mm/s</strong>（P 波小、心率快，拉开一倍更好认）——此时所有间期读数是常规的 2 倍，先看标注再读数，别把间期量成两倍。</p>
+    <p><strong>心率估算（规则心律）：</strong>25mm/s 下心率 ≈ <span class="mono">300 ÷ RR 大格数</span>；50mm/s 下 ≈ <span class="mono">600 ÷ RR 大格数</span>。</p>
+    <p><strong>找 P 波：</strong>II 导和 V1 最清楚。P 找不到时先想"埋进 QRS / T 波里"（SVT），再想"根本不是窦性 P"（交界性）。</p>
+    <p><strong>QT / QTc：</strong>从 QRS 起点量到 T 波终点，选 T 波最清楚的导联；QTc = QT/√RR。极快心率时 Bazett 有高估倾向——<strong>判断 LQTS 要在窦性心律、无电解质紊乱时复查确认</strong>，不能只凭发作图。</p>
+  </div>
+</div>
+
+</section>
+
+<!-- ===== 翻页：第3页 方法 ===== -->
+<section class="pg" id="pg3" data-title="三 方法">
+<!-- ==================================================== 第三章 -->
+<div class="ch" id="c3">
+  <div class="k">第三章</div>
+  <h2>方法：拿到一张心电图怎么想</h2>
+  <div class="lead">固定顺序的分析框架——30 秒出方向，然后用鉴别表收口。每一型的完整知识在第五章，本章只给方法。</div>
+
+  <h3 id="c3-1"><span class="sn">3.1</span>五步分析法：率 → 律 → 宽 → P → QTc</h3>
+  <ol>
+    <li><strong>看心率。</strong>&gt;220 警惕 SVT；&lt;100（清醒）警惕窦缓 / cAVB。<em>依据：</em>新生儿窦房结固有频率高于成人，220 是病理性的门槛（成人儿童 180 即警惕，见 <a class="x" href="#c1-2">1.2</a>）。</li>
+    <li><strong>看节律（RR 规则吗）。</strong>绝对规则 + 突发突止 → SVT（折返环固定，开/关像开关）；绝对不齐 → 房颤 / 多源早搏（多个起源点各跳各的）；规则而慢 → cAVB（逸搏节律规则而缓慢）。</li>
+    <li><strong>看 QRS 宽度。</strong>窄（&lt;0.08s）→ 激动走正常希浦系统，室上性来源；宽 → 心肌内缓慢传导，VT 或室上性伴差传（新生儿差传极罕见，决策逻辑见 <a class="x" href="#d-vt">5.7</a>）。</li>
+    <li><strong>看 P 波与 QRS 的关系。</strong>这是机制的直接呈现：P 埋藏 → SVT；锯齿波 → 房扑；P 形态异常 → 房速；P 与 QRS 各跳各的 → cAVB 或 JET（<strong>看房率谁快谁慢</strong>：房率&gt;室率 = cAVB，房率&lt;室率 = JET）。</li>
+    <li><strong>看 QTc。</strong>&gt;470 警惕 LQTS；&gt;500 高危；伴 2:1 房室阻滞 = 极高危（机制见 <a class="x" href="#d-lqts">5.6</a>）。</li>
+  </ol>
+  <div class="box mn">
+    <div class="tag">口诀</div>
+    <div class="text"><strong>率律宽 P 轴</strong>——窄快规则=SVT；窄快锯齿=房扑；窄快异常P=房速；窄快房室分离=JET；宽快=VT；慢而无关=cAVB；QT长=LQTS。</div>
+  </div>
+
+  <h3 id="c3-2"><span class="sn">3.2</span>七型鉴别诊断总表</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th>类型</th><th>心率 (bpm)</th><th>节律</th><th>P 波与 QRS 关系</th><th>QRS</th><th>一眼要点</th><th>首选方向</th></tr>
+    <tr><td class="n">SVT</td><td class="mono-cell">220–300</td><td>绝对规则，突发突止</td><td>P 埋藏 / 逆行</td><td>窄</td><td>像"按了开关"</td><td>冰 → 腺苷 → 电（<a class="x" href="#c4-5">4.5</a>）</td></tr>
+    <tr><td class="n">房扑</td><td class="mono-cell">房 300–500<br>室 150–250</td><td>规则（固定传导比）</td><td>锯齿 F 波，无等电线</td><td>窄</td><td>腺苷后 F 波暴露</td><td>不稳定电复律；地高辛 ± Ic 类</td></tr>
+    <tr><td class="n">房速 AT</td><td class="mono-cell">房 180–300</td><td>规则或变异传导</td><td>异常 P 形态，1:1 或 2:1</td><td>窄</td><td>数 PP 间期，室率可以不高</td><td>地高辛 / 普萘洛尔</td></tr>
+    <tr><td class="n">JET</td><td class="mono-cell">160–210</td><td>规则</td><td>房室分离，房率 &lt; 室率</td><td>窄</td><td>先心术后 24–72h</td><td>纠因 + 胺碘酮</td></tr>
+    <tr><td class="n">cAVB</td><td class="mono-cell">室 60–80<br>或 &lt;60</td><td>规则而慢</td><td>P 与 QRS 完全无关，房率 &gt; 室率</td><td>窄（交界）/ 宽（室性）</td><td>大炮音；宽 QRS 逸搏更危险</td><td>室率 &lt;55 → 起搏</td></tr>
+    <tr><td class="n">VT</td><td class="mono-cell">150–250</td><td>规则或略不齐</td><td>房室分离</td><td><em>宽 &gt;0.08s</em></td><td>宽大畸形，负向一致性</td><td>胺碘酮 / 电复律</td></tr>
+    <tr><td class="n">房颤</td><td class="mono-cell">室率不定</td><td><em>绝对不齐</em></td><td>P 波消失</td><td>窄</td><td>新生儿极罕见 → 想 Ebstein / WPW</td><td>普鲁卡因胺 / 电复律</td></tr>
+  </table>
+  </div>
+  <p style="font-size:12.5px;color:var(--gray)">表中"首选方向"只是路标：完整流程在<a class="x" href="#c4">第四章</a>，每型详解在<a class="x" href="#c5">第五章</a>，剂量在<a class="x" href="#apB">附录 B</a> 与 <a class="x" href="#c6-2">6.2</a>。</p>
+
+  <h3 id="c3-3"><span class="sn">3.3</span>两个经典的"伪装"</h3>
+  <div class="box warn">
+    <div class="tag">未下传 PAC 伪装窦缓</div>
+    <div class="text">房性早搏来得太早，房室结还在不应期，P′ 后没有 QRS——形成长间歇，监护仪报"心动过缓"。<strong>鉴别：长间歇前的 T 波里藏着形态不同的 P′ 波。</strong>看清了无需任何处理，最怕当窦缓去装起搏器。机制详见 <a class="x" href="#d-pac">5.8</a>。</div>
+  </div>
+  <div class="box warn">
+    <div class="tag">窦缓 vs cAVB</div>
+    <div class="text">都有慢而规则的 RR。<strong>看 P-QRS 关系：窦缓每个 P 跟一个 QRS（1:1，PR 固定）；cAVB 的 P 与 QRS 各跳各的，且房率 &gt; 室率。</strong>详见 <a class="x" href="#d-cavb">5.5</a>。</div>
+  </div>
+  <p>良性早搏的 6 条良性标准与 7 条需评估指征，在 <a class="x" href="#d-pac">5.8</a> 一并给出——它是最常遇到的"判断题"。</p>
+</div>
+
+</section>
+
+<!-- ===== 翻页：第4页 急症处理 ===== -->
+<section class="pg" id="pg4" data-title="四 急症处理">
+<!-- ==================================================== 第四章 -->
+<div class="ch" id="c4">
+  <div class="k">第四章</div>
+  <h2>急症处理：最先要会的一章</h2>
+  <div class="lead">处理病人的完整流程，自成一个闭环：先保住血流动力学，再谈诊断。每一型"为什么"在各论与治疗学中展开。</div>
+
+  <h3 id="c4-1"><span class="sn">4.1</span>监护仪报警后的第一分钟：做五件事</h3>
+  <ol>
+    <li><strong>看孩子，不只看数字。</strong>肤色、呼吸、反应、肢端温度、毛细血管再充盈——同样的心电图数字，灌注好坏是两条路。</li>
+    <li><strong>12 导联心电图。</strong>治疗可以开始于单导联判读，但<strong>最终诊断必须落在 12 导联上</strong>（QRS 宽窄、P 波位置、QTc、预激波都只有 12 导联看得全）。</li>
+    <li><strong>持续心电监护 + 建立静脉通路。</strong>通路尽量选<strong>大静脉（如肘正中）</strong>——腺苷要在几秒内以原浓度到达房室结，细静脉必然失败。</li>
+    <li><strong>快速评估稳定性</strong>（4.2）——这是后续一切处理的分水岭。</li>
+    <li><strong>抽血：血气 + 电解质（K/Mg/Ca）+ 血糖。</strong>可逆因素一半在这里（4.7）。</li>
+  </ol>
+
+  <h3 id="c4-2"><span class="sn">4.2</span>稳定性评估：处理路线的分水岭</h3>
+  <div class="blk">
+    <p><strong>不稳定的表现（任何一条即算）：</strong>低血压 / CRT&gt;3 秒、四肢凉或花纹、意识改变、呼吸窘迫、乳酸升高或代谢性酸中毒、心衰征象（肝大、水肿）。</p>
+    <p><strong>为什么它是分水岭：</strong>不稳定说明心脏"此刻的输出不足以维持灌注"，等药物起效的时间都等不起——所以直接电复律；稳定则有时间让药物发挥作用，从最简单、副作用最小的一步开始。<strong>拿不准时，按不稳定处理。</strong></p>
+  </div>
+
+  <h3 id="c4-3"><span class="sn">4.3</span>不稳定 → 立即同步电复律</h3>
+  <div class="box warn">
+    <div class="tag">行动</div>
+    <div class="text">首剂 <strong>0.5–1 J/kg</strong>，无效 <strong>2 J/kg</strong>。<strong>不要因等待镇静而延迟。</strong>复律后予抗心律失常药维持。同步 / 非同步的选择原理与操作细节见 <a class="x" href="#c6-3">6.3</a>。</div>
+  </div>
+
+  <h3 id="c4-4"><span class="sn">4.4</span>稳定 → 按 QRS 宽窄和心率分路用药</h3>
+  <div class="box tip">
+    <div class="tag">三条路</div>
+    <div class="text">
+      <strong>窄 QRS 快而规则</strong>（多为 SVT）→ <a class="x" href="#c4-5">4.5 三步法</a>；<br>
+      <strong>宽 QRS</strong> → 一律先按 <strong>VT</strong>：胺碘酮 5 mg/kg 或利多卡因 1 mg/kg（决策逻辑见 <a class="x" href="#d-vt">5.7</a>）；<br>
+      <strong>心率慢</strong> → cAVB 路径：室率 &lt;55 或 55–70 伴低灌注 → 起搏（<a class="x" href="#d-cavb">5.5</a>）；<br>
+      药物无效 → 电复律。
+    </div>
+  </div>
+
+  <h3 id="c4-5"><span class="sn">4.5</span>稳定 SVT 的三步法：冰 → 苷 → 电</h3>
+  <ol>
+    <li><strong>冰：</strong>冰水毛巾敷<strong>前额 + 鼻梁</strong> 15–30 秒。<em>原理：</em>新生儿迷走张力高（<a class="x" href="#c1-2">1.2</a>），冷刺激触发<strong>潜水反射</strong>，迷走冲动减慢房室结传导——SVT 的环路必经房室结，拖慢它环路就断。</li>
+    <li><strong>腺苷：</strong><span class="mono">0.2 mg/kg</span> 大静脉<strong>弹丸式 3 秒内</strong>推注 + 5 mL 生理盐水冲管；无效递增 0.1 mg/kg，最大 0.3 mg/kg。<em>原理：</em>腺苷延长房室结不应期，打断折返环的前传支（机制见 <a class="x" href="#d-svt">5.1</a>）。</li>
+    <li><strong>电：</strong>药物无效 → 同步电复律 0.5–1 → 2 J/kg。</li>
+  </ol>
+  <div class="box warn">
+    <div class="tag">腺苷"无效"的真相</div>
+    <div class="text">90% 是操作问题：<strong>推注速度不够 / 血管太细 / 没冲管</strong>——腺苷半衰期只有约 10 秒，必须让它以原浓度冲到房室结。<strong>不推荐经脐血管给药。</strong>另外记住：腺苷只终止<strong>折返性</strong>心律失常（SVT）；对房速、JET、房扑本来就不会终止（机制见 <a class="x" href="#c1-3">1.3</a>），不要据此反复加量。</div>
+  </div>
+
+  <h3 id="c4-6"><span class="sn">4.6</span>心跳骤停：按 NRP，不是 PALS</h3>
+  <div class="blk">
+    <p><strong>通气优先，按压 : 通气 = 3 : 1，按压速率 90 次/分。</strong><em>为什么不同：</em>新生儿骤停多为<strong>呼吸问题（窒息）的终点</strong>，肺里没有气，按压再好也无效（底层原因见 <a class="x" href="#c1-2">1.2</a>）；儿童 / 成人才是心源为主、按压优先（PALS 15:2、100–120 次/分）。</p>
+    <p><strong>除颤（VF / 无脉 VT）：</strong><span class="mono">4 J/kg</span>。<strong>肾上腺素：</strong><span class="mono">0.01–0.03 mg/kg</span> IV/IO，每 3–5 分钟。<strong>抗心律失常：</strong>胺碘酮 5 mg/kg 或利多卡因 1 mg/kg。</p>
+  </div>
+
+  <h3 id="c4-7"><span class="sn">4.7</span>可逆因素：人人都要查一遍</h3>
+  <p><strong>低氧 · 酸中毒 · 低钾 / 低镁 / 低钙 · 低体温 · 低血糖 · 药物毒性（地高辛 / 茶碱）。</strong></p>
+  <div class="box tip">
+    <div class="tag">为什么纠因等于治疗</div>
+    <div class="text">电解质紊乱和低氧直接改变心肌电生理：低钾低镁既诱发心律失常、又是地高辛中毒的土壤；酸中毒降低自律性阈值与除颤成功率。目标 K⁺ 维持 <strong>4.0–5.5</strong>。纠正之后很多"顽固"心律失常自己就终止了——所有心律失常的处理都包含这一步。</div>
+  </div>
+
+  <h3 id="c4-8"><span class="sn">4.8</span>需要立即呼叫上级 / 心内科的红线</h3>
+  <ul>
+    <li>血流动力学不稳定，需要电复律 / 除颤</li>
+    <li>室率 &lt;55（cAVB），或 55–70 伴低灌注</li>
+    <li>QTc &gt;500 ms，或 QTc 延长伴 2:1 房室阻滞</li>
+    <li>宽 QRS 心动过速（先按 VT 处理，同时呼叫）</li>
+    <li>腺苷两次规范推注无效，或诊断不明且病情在恶化</li>
+  </ul>
+</div>
+
+</section>
+
+<!-- ===== 翻页：第5页 各论·上 ===== -->
+<section class="pg" id="pg5" data-title="五 各论 · 上">
+<!-- ==================================================== 第五章 -->
+<div class="ch" id="c5">
+  <div class="k">第五章</div>
+  <h2>各论：八型心律失常</h2>
+  <div class="lead">每型一个完整章节：定义与流行病学 → 机制 → 心电图（含读图实例）→ 分型亚型 → 处理 → 长期转归 → 禁忌陷阱。顺序按床旁出现频率与危险度。</div>
+
+  <!-- 5.1 SVT -->
+  <h3 id="d-svt"><span class="sn">5.1</span>SVT 室上性心动过速<small>最常见病理性心律失常 · 发病率 1:250–1:1000</small></h3>
+  <div class="box mn"><div class="tag">口诀</div><div class="text">窄快规则突发止，90% 是旁路（AVRT），冰水腺苷是首选，40% 一岁自己好。</div></div>
+  <h4>机制<span class="why">折返 · AVRT 为主</span></h4>
+  <p><strong>AVRT（房室折返性心动过速，约 90%）：</strong>激动经<strong>正常房室结</strong>下传心室，再经<strong>旁路（accessory pathway）</strong>逆传心房，形成大折返环。旁路传导速度快、不应期短。<strong>40% 旁路在 1 岁内自行消失</strong>（传导系统成熟）——这是新生儿 SVT 预后好的关键，也是"药物维持到 1 岁再评估停药"的依据。</p>
+  <p><strong>AVNRT（房室结折返性心动过速，&lt;10%）：</strong>房室结内存在<strong>双径路</strong>（快径 + 慢径），激动在两条径路间折返。新生儿少见，因房室结尚未发育出成熟的双径路结构（<a class="x" href="#c1-2">1.2</a> 底层原因 2）。</p>
+  <p><strong>为什么冰水和腺苷都有效：</strong>折返环的前传支都要走房室结。冰水敷面激活潜水反射、迷走张力骤增，减慢房室结传导；腺苷直接延长房室结不应期——都是打断前传支，使环路中断。电复律同理：一次电击让全部心肌同时除极、同步复极，折返环消失。</p>
+  <h4>心电图特征</h4>
+  <div class="ecg-box">
+    <div class="ecg-title">SVT 示意 · 窄快规则 · P 波埋藏</div>
+    <svg viewBox="0 0 800 150" xmlns="http://www.w3.org/2000/svg">
+      <g><line x1="0" y1="75" x2="800" y2="75" class="ecg-grid-line"/><line x1="0" y1="38" x2="800" y2="38" class="ecg-grid-line"/><line x1="0" y1="112" x2="800" y2="112" class="ecg-grid-line"/></g>
+      <path class="ecg-wave" d="M 10,75 L 40,75 L 48,42 L 53,100 L 60,75 L 90,75 L 98,42 L 103,100 L 110,75 L 140,75 L 148,42 L 153,100 L 160,75 L 190,75 L 198,42 L 203,100 L 210,75 L 240,75 L 248,42 L 253,100 L 260,75 L 290,75 L 298,42 L 303,100 L 310,75 L 340,75 L 348,42 L 353,100 L 360,75 L 390,75 L 398,42 L 403,100 L 410,75 L 440,75 L 448,42 L 453,100 L 460,75 L 490,75 L 498,42 L 503,100 L 510,75 L 540,75 L 548,42 L 553,100 L 560,75 L 590,75 L 598,42 L 603,100 L 610,75 L 640,75 L 648,42 L 653,100 L 660,75 L 690,75 L 698,42 L 703,100 L 710,75 L 740,75 L 748,42 L 753,100 L 760,75 L 790,75"/>
+      <line x1="48" y1="26" x2="48" y2="36" class="ecg-anno-line"/><line x1="98" y1="26" x2="98" y2="36" class="ecg-anno-line"/><line x1="48" y1="31" x2="98" y2="31" class="ecg-anno-line"/>
+      <text x="73" y="22" text-anchor="middle" class="ecg-anno-text">RR 短 → 220–300 bpm</text>
+      <text x="400" y="138" text-anchor="middle" class="ecg-anno-text">QRS 窄（&lt;0.08s）· 绝对规则 · P 波埋藏 / 逆行 P · 突发突止</text>
+    </svg>
+    <div class="ecg-caption">读图实例（真实病例）：15 天男婴 · 心率约 310 次/分 · 走纸 50mm/s · 窄 QRS 规则 · 无可见 P 波</div>
+  </div>
+  <p>心率 <strong>220–300 bpm</strong>，RR 绝对规则，突发突止；<strong>P 波埋藏于 QRS 中或 T 波终末</strong>，或见<strong>逆行 P 波</strong>（II/III/aVF 负向；RP 短 &lt;70ms 提示 AVNRT，&gt;70ms 提示 AVRT）；QRS 通常窄（&lt;0.08s），伴差传时可宽；<strong>ST-T 改变常见（继发性）</strong>；发作间期与窦律对比可见预激波（δ 波）提示 WPW。</p>
+  <h4>急性处理</h4>
+  <p><strong>稳定：</strong>冰 → 苷 → 电（流程与原理见 <a class="x" href="#c4-5">4.5</a>）；二线：普鲁卡因胺 / 胺碘酮 / 艾司洛尔。<strong>不稳定：</strong>立即同步电复律 0.5–1 → 2 J/kg，复律后予抗心律失常药维持。</p>
+  <h4>长期管理与合并症</h4>
+  <p><strong>地高辛（非预激）10 μg/kg/d</strong> 或<strong>普萘洛尔 2–4 mg/kg/d</strong>；全量至 6 月龄，维持至 1 岁评估停药。合并症：60–70% 无 CHD；20–30% 合并 CHD（Ebstein / L-TGA——所以 SVT 患儿要查心脏超声）；6–10% 合并 WPW。</p>
+  <div class="box warn"><div class="tag">禁忌 / 注意</div><div class="text"><strong>WPW 预激者禁用地高辛</strong>（增加室颤风险）；β 阻滞剂需监测低血糖；不推荐经脐血管给腺苷。</div></div>
+
+  <!-- 5.2 房扑 -->
+  <h3 id="d-afl"><span class="sn">5.2</span>房扑 / 房颤<small>新生儿相对多见 · 占快速心律失常 18% · 房率 300–500</small></h3>
+  <div class="box mn"><div class="tag">口诀</div><div class="text">锯齿 F 波无等电线，房率三百到五百，Ic 类药必配阻滞剂，否则 1:1 传导要完蛋。</div></div>
+  <h4>机制<span class="why">房扑 = 大折返 · 房颤 = 多子波</span></h4>
+  <p><strong>典型房扑：</strong>激动在<strong>右心房内沿三尖瓣环做大折返</strong>（三尖瓣峡部依赖），顺时针或逆时针方向运行。折返环固定，所以 F 波形态一致、节律规则——这也解释了为什么<strong>电复律一次成功率高</strong>（折返环稳定，一击即断）。</p>
+  <p><strong>房颤：</strong>心房内存在<strong>多个混乱的微折返子波</strong>，无统一激动顺序，所以 P 波消失、RR 绝对不齐。新生儿极罕见，多合并 Ebstein 畸形或 WPW——见到房颤先想这两种病。</p>
+  <p><strong>为什么 Ic 类药危险：</strong>氟卡尼 / 普罗帕酮减慢房率（300→200），但<strong>不抑制房室结传导</strong>——原来 2:1 传导（室率 150）的房室结"来得及"每跳都下传，变成 1:1 传导（室率 200+），<strong>室率反而更快</strong>，可致休克。所以 Ic 类必须联合地高辛或 β 阻滞剂"锁住"房室结。</p>
+  <h4>心电图特征</h4>
+  <div class="ecg-box">
+    <div class="ecg-title">房扑示意 · 锯齿 F 波 · 2:1 传导</div>
+    <svg viewBox="0 0 800 150" xmlns="http://www.w3.org/2000/svg">
+      <g><line x1="0" y1="75" x2="800" y2="75" class="ecg-grid-line"/><line x1="0" y1="38" x2="800" y2="38" class="ecg-grid-line"/><line x1="0" y1="112" x2="800" y2="112" class="ecg-grid-line"/></g>
+      <path class="ecg-wave" style="stroke:#6b46c1" d="M 10,75 Q 25,57 40,75 Q 55,93 70,75 Q 85,57 100,75 Q 115,93 130,75 L 138,42 L 143,100 L 150,75 Q 165,57 180,75 Q 195,93 210,75 Q 225,57 240,75 Q 255,93 270,75 L 278,42 L 283,100 L 290,75 Q 305,57 320,75 Q 335,93 350,75 Q 365,57 380,75 Q 395,93 410,75 L 418,42 L 423,100 L 430,75 Q 445,57 460,75 Q 475,93 490,75 Q 505,57 520,75 Q 535,93 550,75 L 558,42 L 563,100 L 570,75 Q 585,57 600,75 Q 615,93 630,75 Q 645,57 660,75 Q 675,93 690,75 L 698,42 L 703,100 L 710,75 Q 725,57 740,75 Q 755,93 770,75 Q 785,57 795,75"/>
+      <text x="70" y="30" text-anchor="middle" class="ecg-anno-text">锯齿 F 波（300–500）</text>
+      <text x="400" y="138" text-anchor="middle" class="ecg-anno-text">无等电线 · QRS 窄 · 2:1 传导（室率约 150–250）</text>
+    </svg>
+    <div class="ecg-caption">读图实例（真实病例）：新生儿房扑 · 腺苷后暴露典型锯齿 F 波 · 2:1 房室传导</div>
+  </div>
+  <p>心房率 <strong>300–500 bpm</strong>，<strong>锯齿状 F 波</strong>，II/III/aVF 多负向（典型房扑）或正向（非典型），<strong>无等电线（关键鉴别点）</strong>；房室传导 2:1（最常见，室率 150–250）或变异传导；QRS 通常窄；<strong>腺苷可增加房室阻滞暴露 F 波（有助诊断，但不终止房扑）</strong>。</p>
+  <h4>急性处理</h4>
+  <p><strong>不稳定：</strong>电复律 0.5–1 J/kg（成功率高）。<strong>稳定：</strong>地高辛（减慢室率）+ 普鲁卡因胺 / 氟卡尼（转复）；难治用胺碘酮。另有 <strong>TEAP（经食管心房超速起搏）</strong>——无创、可重复、不需镇静，新生儿耐受性好。</p>
+  <h4>长期管理</h4>
+  <p>转复后地高辛 ± β 阻滞剂维持 <strong>3–6 个月</strong>；新生儿房扑复发率低，多数婴儿期后不再发作。</p>
+  <div class="box warn"><div class="tag">最大陷阱 + 房颤</div><div class="text"><strong>Ic 类（氟卡尼 / 普罗帕酮）用于房扑时必须联合 AV 阻滞剂</strong>（地高辛或 β 阻滞剂）！否则房率减慢后 2:1→1:1 传导，室率骤升可致死。<br><strong>房颤（极罕见）：</strong>P 波消失、RR 绝对不齐；多合并 Ebstein / WPW；<strong>WPW 合并房颤禁用腺苷和地高辛</strong>，首选普鲁卡因胺或电复律。</div></div>
+
+  <!-- 5.3 AT -->
+  <h3 id="d-at"><span class="sn">5.3</span>AT 房性心动过速<small>占快速心律失常 5–10% · 含局灶性 / 多源性房速</small></h3>
+  <div class="box mn"><div class="tag">口诀</div><div class="text">异常 P 波规则快，房率两百到三百，地高辛 β 阻是首选，腺苷不终止只暴露，多数一岁自己好。</div></div>
+  <h4>机制<span class="why">自律性增高为主</span></h4>
+  <p><strong>局灶性房速（EAT，最常见）：</strong>心房内某一异位灶（常见于<strong>界嵴、肺静脉口、冠状窦口</strong>）<strong>自律性异常增高</strong>，超过窦房结成为主导节律。新生儿心房肌非起搏细胞自律性本身较高（未成熟，<a class="x" href="#c1-2">1.2</a>），在低氧、酸中毒、感染、围生期窒息时更易增高——<strong>纠因本身就是治疗</strong>。</p>
+  <p><strong>多源性房速（MAT）：</strong>≥3 个不同心房异位灶交替发放，P 波形态 ≥3 种，RR 绝对不齐。多见于肺部疾病（RDS、肺炎）、低氧、茶碱 / 咖啡因毒性——<strong>治肺比治心重要</strong>。</p>
+  <p><strong>为什么腺苷不终止 AT：</strong>腺苷只作用于房室结（延长不应期），<strong>不影响心房异位灶的自律性</strong>——灶还在跳。但腺苷可增加房室阻滞，使原本 1:1 传导变成 2:1，把隐藏在 QRS 中的 P 波形态暴露出来——<strong>这是诊断价值，不是治疗作用</strong>。</p>
+  <h4>心电图特征</h4>
+  <div class="ecg-box">
+    <div class="ecg-title">房速示意 · 异常 P 波 · 可伴房室阻滞</div>
+    <svg viewBox="0 0 800 150" xmlns="http://www.w3.org/2000/svg">
+      <g><line x1="0" y1="75" x2="800" y2="75" class="ecg-grid-line"/><line x1="0" y1="38" x2="800" y2="38" class="ecg-grid-line"/><line x1="0" y1="112" x2="800" y2="112" class="ecg-grid-line"/></g>
+      <path class="ecg-wave" d="M 10,75 Q 30,88 50,75 L 70,75 L 78,42 L 83,100 L 90,75 Q 110,68 130,75 L 150,75 L 158,42 L 163,100 L 170,75 Q 190,88 210,75 L 230,75 L 238,42 L 243,100 L 250,75 Q 270,68 290,75 L 310,75 L 318,42 L 323,100 L 330,75 Q 350,88 370,75 L 390,75 L 398,42 L 403,100 L 410,75 Q 430,68 450,75 L 470,75 L 478,42 L 483,100 L 490,75 Q 510,88 530,75 L 550,75 L 558,42 L 563,100 L 570,75 Q 590,68 610,75 L 630,75 L 638,42 L 643,100 L 650,75 Q 670,88 690,75 L 710,75 L 718,42 L 723,100 L 730,75 Q 750,68 770,75 L 790,75"/>
+      <line x1="50" y1="84" x2="50" y2="96" class="ecg-anno-line"/><text x="50" y="108" text-anchor="middle" class="ecg-anno-text">异常 P 波</text>
+      <text x="400" y="138" text-anchor="middle" class="ecg-anno-text">P 形态异常 · 房率 180–300 · 可 1:1 或 2:1 传导 · 腺苷不终止但暴露 P 波</text>
+    </svg>
+  </div>
+  <p><strong>P 波形态异常</strong>（非窦性 P 波）：II/III/aVF 可负向、低平或切迹，aVR 可正向（提示低位房速）；<strong>心房率 180–300 bpm</strong>；可伴不同程度房室传导阻滞（2:1 或变异传导）；QRS 通常窄；RR 可规则（固定传导）或不规则（变异传导）——<strong>室率可以不高，要数 PP 间期</strong>。</p>
+  <h4>分型</h4>
+  <p><strong>局灶性房速（EAT）：</strong>单一异位灶，P 波形态一致，RR 较规则。<strong>多源性房速（MAT）：</strong>≥3 种 P 波形态，RR 绝对不齐，多见于肺部疾病 / 低氧。<strong>无休止性房速：</strong>持续 &gt;12h，可致<strong>心动过速性心肌病</strong>——需积极控制心率，不能"等着它自己好"。</p>
+  <h4>急性处理</h4>
+  <p><strong>稳定：</strong><strong>地高辛</strong>（负荷 30–40 μg/kg 分 3 次 → 维持 10 μg/kg/d）或<strong>普萘洛尔</strong> 2–4 mg/kg/d；难治 → <strong>胺碘酮</strong> 5 mg/kg IV 或普罗帕酮 / 氟卡尼；<strong>伊伐布雷定</strong> 0.1–0.2 mg/kg/d 用于难治性（最新证据）。<strong>不稳定：</strong>立即同步电复律 0.5–1 → 2 J/kg，复律后予抗心律失常药维持。</p>
+  <h4>长期管理与转归</h4>
+  <p>地高辛 ± β 阻滞剂维持 <strong>3–6 个月</strong>；<strong>多数在婴儿期自行缓解</strong>（异位灶成熟消退）；难治性 / 无休止性 → 小儿电生理评估，年龄大后可射频消融。</p>
+  <div class="box warn"><div class="tag">禁忌 / 注意</div><div class="text"><strong>腺苷通常不终止 AT</strong>（但可增加房室阻滞暴露 P 波，有助诊断）；<strong>WPW 合并 AT 时禁用地高辛</strong>；持续 AT 可致心动过速性心肌病，需积极控制心率；纠正低氧 / 电解质 / 感染。</div></div>
+
+  <!-- 5.4 JET -->
+  <h3 id="d-jet"><span class="sn">5.4</span>JET 交界性异位心动过速<small>先天性罕见 · 术后常见 · 先心术后发生率 5–22%</small></h3>
+  <div class="box mn"><div class="tag">口诀</div><div class="text">窄 QRS 房室分离，心率一百六到两百一，腺苷不终止只分离，胺碘酮是第一线，术后镇静加降温。</div></div>
+  <h4>机制<span class="why">交界区自律性增高</span></h4>
+  <p><strong>先天性 JET：</strong>房室结 / 希氏束区域的自律性细胞<strong>异常增高</strong>，超过窦房结成为主导节律。可与<strong>母体抗 Ro/La 抗体</strong>相关（炎症损伤传导系统）、心肌炎、心肌病。</p>
+  <p><strong>术后 JET：</strong>心脏手术（尤其 <strong>TOF、VSD 修补</strong>）对房室结区域的<strong>创伤、水肿、缺血、炎症</strong>，导致交界区自律性一过性增高。术后 <strong>24–72h 高发</strong>，多为一过性——"伤口肿了在乱放电，肿消了就好"。</p>
+  <p><strong>为什么房室分离：</strong>交界区激动<strong>下传心室</strong>（产生 QRS），但<strong>逆传心房的能力弱或不稳定</strong>——心房仍由窦房结控制（产生 P 波），P 与 QRS 各跳各的，<strong>房率慢于室率</strong>。</p>
+  <p><strong>为什么腺苷不终止：</strong>JET 的异位灶就在房室结内，腺苷虽作用于房室结，但对已经增高的自律性灶抑制有限，只能加重房室分离（使逆传更困难），不能终止心动过速——<strong>不要误以为无效就加量</strong>。</p>
+  <h4>心电图特征</h4>
+  <div class="ecg-box">
+    <div class="ecg-title">JET 示意 · 房室分离 · 房率慢于室率</div>
+    <svg viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg">
+      <g><line x1="0" y1="80" x2="800" y2="80" class="ecg-grid-line"/><line x1="0" y1="40" x2="800" y2="40" class="ecg-grid-line"/><line x1="0" y1="120" x2="800" y2="120" class="ecg-grid-line"/></g>
+      <path style="fill:none;stroke:#b8863b;stroke-width:2;stroke-dasharray:4,2" d="M 20,66 Q 35,54 50,66 M 120,66 Q 135,54 150,66 M 220,66 Q 235,54 250,66 M 320,66 Q 335,54 350,66 M 420,66 Q 435,54 450,66 M 520,66 Q 535,54 550,66 M 620,66 Q 635,54 650,66 M 720,66 Q 735,54 750,66"/>
+      <path class="ecg-wave" d="M 10,80 L 60,80 L 68,46 L 73,108 L 80,80 L 130,80 L 138,46 L 143,108 L 150,80 L 200,80 L 208,46 L 213,108 L 220,80 L 270,80 L 278,46 L 283,108 L 290,80 L 340,80 L 348,46 L 353,108 L 360,80 L 410,80 L 418,46 L 423,108 L 430,80 L 480,80 L 488,46 L 493,108 L 500,80 L 550,80 L 558,46 L 563,108 L 570,80 L 620,80 L 628,46 L 633,108 L 640,80 L 690,80 L 698,46 L 703,108 L 710,80 L 760,80 L 768,46 L 773,108 L 780,80"/>
+      <text x="35" y="48" text-anchor="middle" class="ecg-anno-text">P 波（窦性，慢）</text>
+      <text x="75" y="128" text-anchor="middle" class="ecg-anno-text">QRS（交界性，快）</text>
+      <text x="400" y="152" text-anchor="middle" class="ecg-anno-text">房室分离：P 与 QRS 无关 · 房率慢于室率 · 心率 160–210 · QRS 窄 · 腺苷不终止</text>
+    </svg>
+  </div>
+  <p>心率 <strong>160–210 bpm</strong>；<strong>窄 QRS</strong>（除非伴差传）；<strong>房室分离</strong>——P 波与 QRS 无关，房率慢于室率；逆行 P 波（II/III/aVF 负向，RP 短）或无 P 波；QRS 形态正常；<strong>腺苷可致 VA 分离加重但不终止心律失常</strong>；可有窦性夺获 / 融合波。</p>
+  <h4>分型</h4>
+  <p><strong>先天性 JET：</strong>出生时即存在，罕见，可与母体抗 Ro/La 相关、心肌炎、心肌病；常需长期药物治疗。<strong>术后 JET：</strong>先心术后 24–72h 出现（尤其 TOF、VSD 修补后），手术创伤 + 炎症 + 缺血所致；多为一过性。</p>
+  <h4>急性处理</h4>
+  <p><strong>先天性：</strong><strong>胺碘酮 5 mg/kg IV（一线，60% 有效）</strong>± 普萘洛尔 / 氟卡尼联合；难治 → <strong>伊伐布雷定</strong> 0.1–0.2 mg/kg/d（最新证据，可单药治疗）；不稳定 → 电复律。</p>
+  <p><strong>术后——核心是纠正诱因，不是堆药：</strong>镇静镇痛（咪达唑仑 + 吗啡）撤掉交感刺激；<strong>降温 34–35℃</strong>（交界区自律性受交感张力和温度驱动，降温直接降自律性）；纠正电解质（低钾 / 低镁）；优化容量；减少正性肌力药。<strong>药物：</strong>胺碘酮（一线）或普鲁卡因胺；必要时<strong>心房超速起搏（AAT）</strong>——用更快的房率夺获心房，恢复房室同步、抬高心输出量。</p>
+  <h4>长期管理与转归</h4>
+  <p>先天性 JET 常需联合药物治疗（胺碘酮 + β 阻滞剂）；部分需射频消融（年龄大后，成功率 80–85%）。<strong>术后 JET 多为一过性，数天至数周自行缓解，不需长期用药。</strong></p>
+  <div class="box warn"><div class="tag">禁忌 / 注意</div><div class="text"><strong>腺苷不终止 JET</strong>（只致 VA 分离），不要误以为无效就加量；<strong>术后 JET 核心是镇静 + 降温 + 纠正诱因</strong>，不是单纯加抗心律失常药；先天性 JET 可致心衰和死亡，需积极治疗；房室不同步时心输出量下降，可考虑心房起搏。</div></div>
+
+  <!-- 5.5 cAVB -->
+</div>
+</section>
+
+<!-- ===== 翻页：第6页 各论·下 ===== -->
+<section class="pg" id="pg6" data-title="五 各论 · 下">
+<div class="ch" id="c5b">
+  <div class="k">第五章（续）</div>
+  <h2>各论 · 下：缓慢、通道病与室性</h2>
+  <div class="lead">接上页——本页覆盖 cAVB、LQTS、VT/VF 与良性早搏。</div>
+
+  <h3 id="d-cavb"><span class="sn">5.5</span>cAVB 完全性房室传导阻滞<small>60% 与母体抗 Ro/La 相关 · 发病率 1:15000–1:20000</small></h3>
+  <div class="box mn"><div class="tag">口诀</div><div class="text">P 和 QRS 各跳各的，室率五十五是红线，低于五十五就起搏，妈妈一定要查抗 Ro/La。</div></div>
+  <h4>机制<span class="why">传导中断 + 逸搏接管</span></h4>
+  <p><strong>自身免疫性（60%）：</strong>母体<strong>抗 Ro/SSA、抗 La/SSB 抗体</strong>经胎盘进入胎儿，<strong>攻击房室结区域的传导细胞</strong>，导致炎症、纤维化、钙化，最终完全中断房室传导。<strong>母亲可能完全无症状</strong>（干燥综合征 / 狼疮），但抗体阳性——所以查的是母亲血，不是患儿。</p>
+  <p><strong>先天性心脏病相关（40%）：</strong>L-TGA（矫正性大动脉转位）、房室间隔缺损、左室流入道畸形等，传导系统解剖异常或缺如。</p>
+  <p><strong>逸搏心律：</strong>房室结以下的次级起搏点接管心室节律。<strong>交界逸搏</strong>（QRS 窄，率 60–80）位点高、较稳定；<strong>室性逸搏</strong>（QRS 宽，率 &lt;60）位点低、不稳定，易发生停搏和猝死。</p>
+  <p><strong>听诊线索：</strong>P 与 QRS 无固定关系 → 房室收缩组合每次都不同 → 第一心音强弱不等；偶尔心房心室同时收缩（三尖瓣开放时心房收缩、血倒流）→ 响亮的<strong>"大炮音"</strong>——听诊就能提示 cAVB。</p>
+  <h4>心电图特征</h4>
+  <div class="ecg-box">
+    <div class="ecg-title">cAVB 示意 · P 与 QRS 完全无关 · 房率快于室率</div>
+    <svg viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg">
+      <g><line x1="0" y1="80" x2="800" y2="80" class="ecg-grid-line"/><line x1="0" y1="40" x2="800" y2="40" class="ecg-grid-line"/><line x1="0" y1="120" x2="800" y2="120" class="ecg-grid-line"/></g>
+      <path style="fill:none;stroke:#b8863b;stroke-width:2;stroke-dasharray:4,2" d="M 15,66 Q 30,54 45,66 M 85,66 Q 100,54 115,66 M 155,66 Q 170,54 185,66 M 225,66 Q 240,54 255,66 M 295,66 Q 310,54 325,66 M 365,66 Q 380,54 395,66 M 435,66 Q 450,54 465,66 M 505,66 Q 520,54 535,66 M 575,66 Q 590,54 605,66 M 645,66 Q 660,54 675,66 M 715,66 Q 730,54 745,66"/>
+      <path class="ecg-wave" d="M 10,80 L 100,80 L 108,46 L 113,108 L 120,80 Q 150,72 180,80 L 250,80 L 258,46 L 263,108 L 270,80 Q 300,72 330,80 L 400,80 L 408,46 L 413,108 L 420,80 Q 450,72 480,80 L 550,80 L 558,46 L 563,108 L 570,80 Q 600,72 630,80 L 700,80 L 708,46 L 713,108 L 720,80 Q 750,72 780,80"/>
+      <text x="30" y="48" text-anchor="middle" class="ecg-anno-text">P 波（窦性，快）</text>
+      <text x="118" y="130" text-anchor="middle" class="ecg-anno-text">QRS（逸搏，慢）</text>
+      <text x="400" y="152" text-anchor="middle" class="ecg-anno-text">P 与 QRS 完全无关 · 房率 &gt; 室率 · 室率 60–80（交界）或 &lt;60（室性）· 第一心音强弱不等</text>
+    </svg>
+  </div>
+  <p><strong>P 波与 QRS 完全无关</strong>（房室分离），房率 &gt; 室率，PP 规则、RR 规则但 P 与 QRS 无固定关系；<strong>室率 60–80 bpm</strong>（交界逸搏，QRS 窄）或 <strong>&lt;60 bpm</strong>（室性逸搏，QRS 宽，<strong>更危险</strong>）；第一心音强弱不等，可闻大炮音；QTc 可延长。<strong>与窦性心动过缓鉴别：窦缓有 1:1 P-QRS 关系，cAVB 没有</strong>（<a class="x" href="#c3-3">3.3</a>）。</p>
+  <h4>紧急起搏指征（红线）</h4>
+  <p><strong>为什么 55 是红线：</strong>新生儿心输出量 = 心率 × 每搏量，且每搏量的代偿余地小——<strong>心率就是心输出量</strong>。① 室率 <strong>&lt;55 bpm</strong> 立即起搏；② 室率 <strong>55–70 伴心衰 / 低灌注 / 乳酸高</strong>——储备已耗尽，不要等数字掉到 55；③ <strong>室性逸搏</strong>（宽 QRS、不稳定）本身即指征；④ 胎儿水肿 / 心功能不全。</p>
+  <p>临时桥接与永久起搏的方式见 <a class="x" href="#c6-4">6.4</a>——药物只是桥接，<strong>起搏才是唯一根治</strong>。</p>
+  <h4>病因排查与高危</h4>
+  <p><strong>必须查母亲抗 Ro/SSA、抗 La/SSB 抗体</strong>（60% 相关）；其余与 CHD 相关（L-TGA、房室间隔缺损）；查心肌炎、心肌病。</p>
+  <div class="box warn"><div class="tag">高危</div><div class="text">合并<strong>胎儿水肿</strong>者死亡率 20–30%；合并 EFE（心内膜弹力纤维增生症）预后差；<strong>出生后 24–48h 室率可能快速下降</strong>，需 NICU 密切监护；<strong>室性逸搏（宽 QRS）比交界逸搏（窄 QRS）危险得多</strong>。</div></div>
+
+  <!-- 5.6 LQTS -->
+  <h3 id="d-lqts"><span class="sn">5.6</span>LQTS 长 QT 综合征<small>占非良性心律失常 10.7% · 发病率 1:2000</small></h3>
+  <div class="box mn"><div class="tag">口诀</div><div class="text">QTc 超过四百七，立即上普萘洛尔，不等基因结果；尖端扭转用镁盐，补钾提速是关键，延长 QT 药全禁。</div></div>
+  <h4>机制<span class="why">触发活动 · 基因 → 通道 → 诱因</span></h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th>亚型</th><th>基因（占比）</th><th>通道与电流</th><th>典型诱因</th><th>T 波形态</th></tr>
+    <tr><td class="n">LQT1</td><td>KCNQ1（约 50%）</td><td>I₍Ks₎ 钾通道功能丧失 → 复极减慢</td><td>运动 / 游泳（交感激动）</td><td>宽基底、延迟出现</td></tr>
+    <tr><td class="n">LQT2</td><td>KCNH2（30–40%）</td><td>I₍Kr₎ 钾通道功能丧失 → 复极减慢</td><td><em>突然声响（闹钟 / 门铃）</em></td><td>低平 / 切迹 / 双峰</td></tr>
+    <tr><td class="n">LQT3</td><td>SCN5A（5–10%）</td><td>钠通道功能获得（延迟关闭）→ 持续钠内流延长复极</td><td>睡眠 / 静息</td><td>延迟出现、高尖</td></tr>
+  </table>
+  </div>
+  <p><strong>TdP 怎么发生：</strong>复极延长 → 动作电位 3 相出现<strong>早期后除极（EAD）</strong>→ 达到阈电位触发室性早搏 → 多个 EAD 叠加 → <strong>尖端扭转型室速（TdP）</strong>。<strong>镁盐抑制 EAD，所以是 TdP 一线用药。</strong></p>
+  <p><strong>为什么 2:1 房室阻滞极高危：</strong>不是传导系统坏了，而是<strong>心室复极极度延长</strong>——下一个 P 波到达时心室还在不应期里，隔一个才能下传。QT 长到了"心律都排不开"的程度，也是 LQTS 占 SIDS 5–10% 的原因。</p>
+  <h4>心电图特征</h4>
+  <div class="ecg-box">
+    <div class="ecg-title">LQTS 示意 · QT 显著延长</div>
+    <svg viewBox="0 0 800 160" xmlns="http://www.w3.org/2000/svg">
+      <g><line x1="0" y1="80" x2="800" y2="80" class="ecg-grid-line"/><line x1="0" y1="42" x2="800" y2="42" class="ecg-grid-line"/><line x1="0" y1="118" x2="800" y2="118" class="ecg-grid-line"/></g>
+      <path class="ecg-wave" d="M 10,80 Q 30,72 50,80 L 70,80 L 78,46 L 83,106 L 90,80 L 130,80 Q 170,60 210,80 L 260,80 Q 280,72 300,80 L 320,80 L 328,46 L 333,106 L 340,80 L 380,80 Q 420,60 460,80 L 510,80 Q 530,72 550,80 L 570,80 L 578,46 L 583,106 L 590,80 L 630,80 Q 670,60 710,80 L 760,80 Q 780,72 795,80"/>
+      <line x1="78" y1="116" x2="78" y2="128" class="ecg-anno-line"/><line x1="210" y1="116" x2="210" y2="128" class="ecg-anno-line"/><line x1="78" y1="122" x2="210" y2="122" class="ecg-anno-line"/>
+      <text x="144" y="142" text-anchor="middle" class="ecg-anno-text">QT 明显延长 → QTc &gt;470ms</text>
+      <text x="480" y="34" text-anchor="middle" class="ecg-anno-text">T 波延迟 / 宽基 / 切迹</text>
+    </svg>
+    <div class="ecg-caption">读图实例（真实病例）：婴儿 LQT3 · QT 间期显著延长 · 长等电线 ST 段 + 窄基 T 波</div>
+  </div>
+  <p>QTc <strong>&gt;470ms</strong>（新生儿标准，Bazett 校正）；&gt;500 高度提示；T 波形态异常见上表；<strong>可伴 2:1 房室传导阻滞（高危征象）</strong>；<strong>TdP：</strong>QRS 波峰围绕基线扭转、似纺锤形，常短阵自行终止，可蜕变为室颤。<em>测量注意：</em>Bazett 在极快心率有高估倾向——诊断要在窦性心律下复查确认（<a class="x" href="#c2-4">2.4</a>）。</p>
+  <h4>急性 TdP 处理（为什么这么配）</h4>
+  <p><strong>硫酸镁 25–50 mg/kg IV</strong>（一线，特异性抑制 EAD——对"复极延长"的土壤起效）＋ <strong>补钾至 4.5–5.0</strong>（钾通道电流依赖胞外钾）＋ <strong>提高心率至 90–110</strong>（异丙肾上腺素 / 临时起搏——心率快则每搏复极时间短，QT 物理性缩短，EAD 没机会成形）。室颤时 4 J/kg 除颤。</p>
+  <h4>长期治疗</h4>
+  <p><strong>普萘洛尔 2–3 mg/kg/d 分 3–4 次（可至 4 mg/kg）——立即启动，不等基因结果</strong>（降低交感触发 + 缩短动作电位）；LQT3 加用<strong>美西律</strong> 2–5 mg/kg/d（阻断延迟钠内流）。</p>
+  <h4>避免诱因与遗传筛查</h4>
+  <p>LQT1 避免剧烈运动 / 游泳；LQT2 避免突然声响（<strong>闹钟 / 门铃远离婴儿床</strong>）；LQT3 睡眠时发作风险高；<strong>避免所有延长 QT 的药物</strong>（crediblemeds.org）。常染色体显性遗传；<strong>一级亲属均需 ECG + 基因检测</strong>。</p>
+  <div class="box warn"><div class="tag">高危 / 禁忌</div><div class="text">2:1 阻滞 = 新生儿 LQTS 高危征象；占 SIDS 5–10%；<strong>禁用胺碘酮、索他洛尔</strong>（延长 QT）；家属需 CPR 培训；通常需终身 β 阻滞剂。</div></div>
+
+  <!-- 5.7 VT -->
+  <h3 id="d-vt"><span class="sn">5.7</span>VT 室性心动过速 / VF 室颤<small>罕见但致命 · 多为继发性</small></h3>
+  <div class="box mn"><div class="tag">口诀</div><div class="text">宽 QRS 房室分离，室速胺碘酮利多卡，室颤除颤四焦每公斤，先找病因是关键。</div></div>
+  <h4>机制与病因<span class="why">三种机制对应三组诱因</span></h4>
+  <p><em>折返性 VT</em>——心肌瘢痕 / 纤维化区域形成缓慢传导区，激动在瘢痕周围折返。多见于<strong>心肌炎、心肌病、先心术后</strong>。<em>自律性 VT</em>——心室异位灶自律性增高，多见于<strong>心肌缺血、低氧、酸中毒</strong>。<em>触发活动性 VT（TdP）</em>——EAD / DAD 触发，见于 <strong>LQTS、地高辛中毒、电解质紊乱</strong>。<strong>VF 机制：</strong>多个微折返子波在心室内混乱运行，无统一激动顺序，心室失去有效收缩——需立即除颤"重启"。</p>
+  <p><strong>为什么宽 QRS 一律先按 VT：</strong>① 新生儿室上速伴差传<strong>极罕见</strong>，鉴别的先验概率极低；② 误判代价<strong>不对称</strong>——把 VT 当 SVT 治（尤其误用维拉帕米 / 地尔硫卓）可致死，反过来按 VT 治（胺碘酮）只是偏保守。规则简单粗暴：<strong>宽 QRS = VT，直到证明不是。</strong></p>
+  <h4>心电图特征</h4>
+  <div class="ecg-box">
+    <div class="ecg-title">VT 示意 · 宽 QRS · 房室分离</div>
+    <svg viewBox="0 0 800 150" xmlns="http://www.w3.org/2000/svg">
+      <g><line x1="0" y1="75" x2="800" y2="75" class="ecg-grid-line"/><line x1="0" y1="38" x2="800" y2="38" class="ecg-grid-line"/><line x1="0" y1="112" x2="800" y2="112" class="ecg-grid-line"/></g>
+      <path class="ecg-wave" style="stroke:#c0392b" d="M 10,75 L 40,75 L 50,25 L 60,118 L 70,75 L 110,75 L 120,28 L 130,115 L 140,75 L 180,75 L 190,25 L 200,118 L 210,75 L 250,75 L 260,28 L 270,115 L 280,75 L 320,75 L 330,25 L 340,118 L 350,75 L 390,75 L 400,28 L 410,115 L 420,75 L 460,75 L 470,25 L 480,118 L 490,75 L 530,75 L 540,28 L 550,115 L 560,75 L 600,75 L 610,25 L 620,118 L 630,75 L 670,75 L 680,28 L 690,115 L 700,75 L 740,75 L 750,25 L 760,118 L 770,75 L 790,75"/>
+      <text x="60" y="20" text-anchor="middle" class="ecg-anno-text" style="fill:#c0392b">宽 QRS（&gt;0.08s）</text>
+      <text x="400" y="138" text-anchor="middle" class="ecg-anno-text">QRS 宽大畸形 · 房室分离 · 心率 150–250 · 可有夺获 / 融合波</text>
+    </svg>
+    <div class="ecg-caption">读图实例（真实病例）：室速 · 胸导联 V1–V6 全部负向（负向一致性）· 宽 QRS 0.2s · 心率 160</div>
+  </div>
+  <p><strong>VT：</strong>QRS 宽大畸形（&gt;0.08s），心率 150–250 bpm，节律可规则或略不规则；<strong>房室分离</strong>（P 与 QRS 无关，房率慢于室率）；可有<strong>窦性夺获波</strong>（窄 QRS 插入）和<strong>融合波</strong>（形态介于两者之间）——两者是房室分离的实锤，看到即可确诊 VT；胸导联 V1–V6 <strong>全部负向（负向一致性）</strong>强烈支持 VT。<strong>VF：</strong>无规律、杂乱的波动，无明确 QRS 波，振幅可大（粗颤）或小（细颤）。</p>
+  <h4>病因（必须查）</h4>
+  <p><strong>心肌炎（最常见）</strong>、心肌病、先心术后、LQTS / TdP、电解质紊乱（低钾 / 低镁 / 低钙）、低氧 / 酸中毒、地高辛中毒、心肌缺血。<strong>VT 是心电图表现，不是诊断终点</strong>——胺碘酮稳住之后，病因决定长期结局。</p>
+  <h4>急性处理</h4>
+  <p><strong>稳定：</strong><strong>胺碘酮 5 mg/kg IV 缓推</strong>（首选，广谱——三种机制都覆盖）或<strong>利多卡因</strong> 1 mg/kg IV → 20–50 μg/kg/min（优先作用于缺血 / 异常心肌）；<strong>TdP：</strong>硫酸镁 25–50 mg/kg；同时纠正电解质和低氧。</p>
+  <p><strong>不稳定 / VF：</strong>VT → 立即<strong>同步</strong>电复律 0.5–1 → 2 J/kg；<strong>VF → 立即非同步除颤 4 J/kg</strong> → CPR（NRP 3:1，<a class="x" href="#c4-6">4.6</a>）→ 肾上腺素 0.01–0.03 mg/kg → 胺碘酮 5 mg/kg → 再除颤；<strong>细颤先 CPR 变粗颤再除颤</strong>。</p>
+  <h4>长期管理</h4>
+  <p>治疗基础病因（心肌炎 / 心肌病）；胺碘酮或 β 阻滞剂维持；难治性 → 植入 ICD（体重足够后）；射频消融（特定折返性 VT）。</p>
+  <div class="box warn"><div class="tag">禁忌 / 注意</div><div class="text"><strong>宽 QRS 心动过速一律先按 VT 处理</strong>，不要试图鉴别室上速伴差传（新生儿罕见）；<strong>维拉帕米绝对禁用</strong>（可致休克 / 死亡）；VF 时 CPR 按 NRP（3:1）非 PALS；细颤先 CPR 变粗颤再除颤。</div></div>
+
+  <!-- 5.8 早搏 -->
+  <h3 id="d-pac"><span class="sn">5.8</span>良性早搏（PAC / PVC）<small>占全部心律失常 71.4% · 绝大多数不用治</small></h3>
+  <div class="box mn"><div class="tag">口诀</div><div class="text">房早室早最常见，代偿间歇分完全，单源偶发不用治，多源连发要警惕。</div></div>
+  <h4>机制<span class="why">异位灶提前发放</span></h4>
+  <p><strong>房性早搏（PAC）——为什么代偿不完全：</strong>心房内异位灶提前发放一次激动，下传心室产生 QRS；异位激动<strong>侵入窦房结、重置了它的"钟"</strong>，下一个窦性激动从重置点重新计时——早搏前后两个窦性 RR <strong>&lt;2 倍</strong>基础 RR（代偿不完全）。</p>
+  <p><strong>室性早搏（PVC）——为什么代偿完全：</strong>心室内异位灶提前发放，产生宽大畸形 QRS，通常<strong>不逆传心房</strong>（或逆传不完全），窦房结节律丝毫没被打扰——早搏前后两个窦性 RR <strong>= 2 倍</strong>基础 RR（代偿完全）。</p>
+  <p><strong>新生儿为什么最多见（71.4%）：</strong>心脏传导系统未成熟，心房 / 心室肌细胞自律性较高，在迷走神经张力变化、喂养、睡眠周期中容易出现异位搏动。<strong>多数随年龄增长自行消失</strong>——这是"观察 + 随访"的底气，也是"不用药"的原因：抗心律失常药的促心律失常风险 &gt; 早搏本身的风险。</p>
+  <h4>心电图特征</h4>
+  <div class="ecg-box">
+    <div class="ecg-title">PAC 与 PVC 示意</div>
+    <svg viewBox="0 0 800 150" xmlns="http://www.w3.org/2000/svg">
+      <g><line x1="0" y1="75" x2="800" y2="75" class="ecg-grid-line"/><line x1="0" y1="38" x2="800" y2="38" class="ecg-grid-line"/><line x1="0" y1="112" x2="800" y2="112" class="ecg-grid-line"/></g>
+      <path class="ecg-wave" d="M 10,75 Q 30,67 50,75 L 70,75 L 78,42 L 83,100 L 90,75 Q 110,67 130,75 L 150,75 L 158,42 L 163,100 L 170,75"/>
+      <path class="ecg-wave" style="stroke:#1e8449" d="M 170,75 Q 185,63 200,75 L 215,75 L 223,42 L 228,100 L 235,75"/>
+      <path class="ecg-wave" d="M 235,75 L 290,75 Q 310,67 330,75 L 350,75 L 358,42 L 363,100 L 370,75 Q 390,67 410,75 L 430,75 L 438,42 L 443,100 L 450,75"/>
+      <path class="ecg-wave" style="stroke:#c0392b" d="M 450,75 L 470,75 L 480,25 L 490,118 L 500,75"/>
+      <path class="ecg-wave" d="M 500,75 L 590,75 Q 610,67 630,75 L 650,75 L 658,42 L 663,100 L 670,75 Q 690,67 710,75 L 730,75 L 738,42 L 743,100 L 750,75 Q 770,67 790,75"/>
+      <text x="200" y="34" text-anchor="middle" class="ecg-anno-text" style="fill:#1e8449">PAC：提前 P′ 波</text>
+      <text x="485" y="20" text-anchor="middle" class="ecg-anno-text" style="fill:#c0392b">PVC：宽 QRS 无 P</text>
+      <text x="400" y="138" text-anchor="middle" class="ecg-anno-text">PAC 代偿不完全 · PVC 代偿完全 · 单源偶发为良性</text>
+    </svg>
+    <div class="ecg-caption">读图实例（真实病例）：室早二联律与三联律 · 宽 QRS 提前出现 · 完全代偿间歇</div>
+  </div>
+  <p><strong>PAC：</strong>提前出现的 P 波（形态与窦性 P 不同，可低平 / 倒置 / 隐藏于前一 T 波中）；P′R 间期可正常或延长；QRS 通常窄（伴差传时可宽）；<strong>代偿间歇不完全</strong>；可未下传（P′ 后无 QRS，易误诊为窦缓，见 <a class="x" href="#c3-3">3.3</a>）。<strong>PVC：</strong>提前出现的宽大畸形 QRS（&gt;0.08s），其前无相关 P 波；T 波方向与 QRS 主波相反；<strong>代偿间歇完全</strong>；单源形态一致，多源形态各异；可呈二联律 / 三联律。</p>
+  <h4>良性判断标准（全部满足才算良性）</h4>
+  <p>① 单源（形态一致）；② 偶发（&lt;10 次/分或 &lt;10% 心搏）；③ 无连发 / 成对 / 短阵 VT；④ 无器质性心脏病；⑤ 活动后减少（良性特征）；⑥ 无症状（无低灌注 / 心衰）。</p>
+  <h4>需进一步评估（任何一条）</h4>
+  <p>① 多源 PVC；② 频发（&gt;10%）；③ 连发 / 成对 / 短阵室速；④ 活动后增多；⑤ 合并器质性心脏病 / 心肌炎 / 心肌病；⑥ 有症状（低灌注 / 心衰）；⑦ PVC 形态异常（如 R-on-T）。</p>
+  <h4>处理</h4>
+  <p><strong>良性早搏：</strong>无需抗心律失常药，安抚家长，定期随访 Holter。<strong>有症状 / 频发 / 合并心脏病：</strong>治疗基础病，必要时 β 阻滞剂（普萘洛尔）。<strong>未下传 PAC 致长间歇：</strong>一般无需处理，避免误诊为窦缓而起搏。新生儿 PVC 多数在 1 岁内消失。</p>
+  <div class="box warn"><div class="tag">注意</div><div class="text"><strong>不要给良性早搏用抗心律失常药</strong>（弊大于利）；<strong>未下传 PAC 易误诊为窦性心动过缓</strong>，仔细看 T 波中是否隐藏 P′ 波；Holter 评估比单次 ECG 更有价值。</div></div>
+</div>
+
+</section>
+
+<!-- ===== 翻页：第7页 治疗学 ===== -->
+<section class="pg" id="pg7" data-title="六 治疗学">
+<!-- ==================================================== 第六章 -->
+<div class="ch" id="c6">
+  <div class="k">第六章</div>
+  <h2>治疗学：药物与非药物</h2>
+  <div class="lead">药为什么这样选（分类与机制）、每个药怎么用（16 药完整卡）、电复律除颤怎么操作、怎么起搏——以及所有红线。</div>
+
+  <h3 id="c6-1"><span class="sn">6.1</span>抗心律失常药分类总览</h3>
+  <p>把 Vaughan Williams 分类挂回 <a class="x" href="#c1-3">1.3</a> 的三大机制：<strong>折返 → 延长不应期 / 减慢传导的药；自律性 → 抑制 4 相的药；触发活动 → 镁盐</strong>。</p>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:66px">类别</th><th>机制（作用位点）</th><th>代表药（新生儿用途）</th><th>核心红线</th></tr>
+    <tr><td class="n">Ia</td><td>钠阻滞 + 钾阻滞 → 减慢传导、延长不应期与 QT</td><td>普鲁卡因胺（WPW+房颤一线）</td><td>快推低血压；延长 QT</td></tr>
+    <tr><td class="n">Ib</td><td>钠阻滞，优先作用于缺血 / 异常心肌</td><td>利多卡因（VT）、美西律（LQT3 阻断晚钠电流）</td><td>过量致惊厥 / 嗜睡</td></tr>
+    <tr><td class="n">Ic</td><td>强钠阻滞 → 显著减慢传导、延长旁路不应期</td><td>氟卡尼、普罗帕酮（难治 SVT / WPW）</td><td>负性肌力；<em>房扑必须联合 AV 阻滞剂</em></td></tr>
+    <tr><td class="n">II</td><td>β 受体阻滞 → 窦率↓、AV 不应期↑、异位自律性↓（抑制 4 相）</td><td>普萘洛尔（LQTS 一线）、艾司洛尔（超短效可控）</td><td>低血糖；不可突停</td></tr>
+    <tr><td class="n">III</td><td>钾阻滞为主 → 延长动作电位时程与不应期，广谱</td><td>胺碘酮（VT 一线 / 术后 JET）、索他洛尔</td><td><em>LQTS 禁用</em></td></tr>
+    <tr class="ban-row"><td class="n">IV</td><td>L 型钙通道阻滞</td><td>维拉帕米</td><td><em>新生儿绝对禁用</em>（机制见 <a class="x" href="#c1-2">1.2</a>）</td></tr>
+    <tr><td class="n">其他</td><td>各自独立机制</td><td>腺苷（AV 结 A1 受体）、地高辛（Na⁺/K⁺-ATP 酶）、硫酸镁（抑制 EAD）、伊伐布雷定（If 通道）、异丙肾（β 激动）、阿托品（M 拮抗）</td><td>逐药见 6.2</td></tr>
+  </table>
+  </div>
+
+  <h3 id="c6-2"><span class="sn">6.2</span>完整药物卡（16 药 · 机制 × 剂量 × 适应症 × 红线）</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:76px">药物</th><th style="width:58px">分类</th><th>主要机制</th><th>新生儿剂量</th><th>主要适应症</th><th>⚠️ 注意 / 禁忌</th></tr>
+    <tr><td class="n">腺苷</td><td>其他</td><td>激活 A1 受体 → AV 结 K⁺ 外流 → 超极化 → 延长 AV 不应期</td><td>0.1–0.2 mg/kg 大静脉快推（&lt;3s）+ 5ml 冲管；无效可 0.3 mg/kg</td><td>SVT（一线）；诊断性（暴露房扑 F 波 / AT P 波）</td><td>必须大静脉快推 + 冲管；不终止 AT / JET / 房扑；WPW+房颤禁用；可致短暂停搏</td></tr>
+    <tr><td class="n">地高辛</td><td>其他</td><td>抑制 Na⁺/K⁺-ATP 酶 → 迷走张力↑ → AV 传导减慢；正性肌力</td><td>负荷：早产 20–30 μg/kg，足月 30–40 μg/kg，分 3 次（首剂半量）；维持：早产 5–8，足月 8–12 μg/kg/d 分 2 次</td><td>SVT（非预激）、AT、房扑（减慢室率）、心衰</td><td><em>WPW 预激禁用</em>（增加室颤）；监测血药浓度（1–2 ng/ml）；低钾 / 低镁易中毒；肾功能不全减量</td></tr>
+    <tr><td class="n">普萘洛尔</td><td>II（β阻）</td><td>非选择性 β1/β2 阻滞 → 减慢窦率、延长 AV 不应期、抑制异位自律性</td><td>口服 1–4 mg/kg/d 分 3–4 次（LQTS 2–3，可至 4）；IV 0.05–0.15 mg/kg 缓推 10min</td><td>SVT、AT、JET、LQTS（一线）、VT</td><td>监测低血糖（尤其禁食时）、心动过缓、低血压；哮喘 / 心衰慎用；不可突然停药</td></tr>
+    <tr><td class="n">艾司洛尔</td><td>II（β阻）</td><td>超短效选择性 β1 阻滞（半衰期 9min）→ 可控性强</td><td>负荷 100–500 μg/kg 缓推 → 维持 25–200 μg/kg/min</td><td>SVT、AT、JET（需快速控制 / 不确定耐受时）</td><td>需持续泵注；低血压 / 心动过缓停药即恢复；心衰慎用；不可与碱性溶液同管</td></tr>
+    <tr><td class="n">胺碘酮</td><td>III（为主）</td><td>多通道阻滞（K⁺/Na⁺/Ca²⁺/β）→ 延长动作电位时程和不应期，广谱</td><td>负荷 5 mg/kg IV 缓推 30–60min（可重复至 15 mg/kg/d）；维持 5–15 μg/kg/min；口服 10–20 mg/kg/d 分 2 次</td><td>难治性 SVT / AT / JET、VT（一线）、术后 JET、室颤</td><td><em>LQTS 禁用</em>（延长 QT）；监测肝功能、甲状腺功能、肺毒性；光敏；皮肤灰蓝；半衰期极长（数周）</td></tr>
+    <tr><td class="n">索他洛尔</td><td>II+III</td><td>非选择性 β 阻滞 + 延迟整流 K⁺ 通道阻滞（I₍Kr₎）→ 延长 QT 和不应期</td><td>口服 2–8 mg/kg/d 分 2 次（起始 2，逐步加量）</td><td>难治性 SVT / AT、房扑（维持窦律）</td><td><em>LQTS 禁用</em>（延长 QT 可致 TdP）；监测 QTc（&gt;500 减量 / 停药）；肾功能不全减量；心动过缓</td></tr>
+    <tr><td class="n">氟卡尼</td><td>Ic</td><td>强钠通道阻滞 → 减慢传导速度，延长旁路不应期</td><td>口服 2–6 mg/kg/d 分 2–3 次（起始 2，逐步加量）；IV 1–2 mg/kg 缓推</td><td>难治性 SVT（尤其 WPW）、AT、JET、房扑（转复）</td><td><em>负性肌力</em>（心衰 / 心肌病慎用）；<em>房扑时必须联合 AV 阻滞剂</em>（防 1:1 传导）；监测 QRS 增宽（&gt;25% 减量）；有致心律失常风险</td></tr>
+    <tr><td class="n">普罗帕酮</td><td>Ic</td><td>钠通道阻滞 + 弱 β 阻滞 → 减慢传导，延长不应期</td><td>口服 10–20 mg/kg/d 分 3–4 次；IV 1–2 mg/kg 缓推 10min</td><td>SVT、AT、房扑（转复）</td><td>同氟卡尼（负性肌力、房扑需联合 AV 阻滞剂）；味觉异常；支气管痉挛；监测 QRS</td></tr>
+    <tr><td class="n">利多卡因</td><td>Ib</td><td>钠通道阻滞（优先作用于缺血 / 异常心肌）→ 抑制室性自律性和折返</td><td>负荷 1 mg/kg IV 缓推 → 维持 20–50 μg/kg/min</td><td>VT（尤其缺血相关）、室颤（除颤后）</td><td>对室上速无效；剂量过大致惊厥 / 嗜睡 / 呼吸抑制；肝功能不全减量；不推荐长期使用</td></tr>
+    <tr><td class="n">美西律</td><td>Ib</td><td>口服利多卡因类似物 → 钠通道阻滞</td><td>口服 2–5 mg/kg/d 分 3 次</td><td>LQT3（辅助，阻断延迟钠内流）、室性心律失常维持</td><td>胃肠道反应（恶心 / 呕吐）；神经系统（震颤 / 嗜睡）；肝功能不全减量；监测血药浓度</td></tr>
+    <tr><td class="n">普鲁卡因胺</td><td>Ia</td><td>钠通道阻滞 + 钾通道阻滞 → 减慢传导、延长不应期、延长 QT</td><td>负荷 10–15 mg/kg IV 缓推 30–60min；维持 20–80 μg/kg/min</td><td>WPW+房颤 / 房扑（一线，延长旁路不应期）、难治性 SVT、VT</td><td>低血压（快速推注）；QT 延长（监测 QTc）；狼疮样综合征（长期）；粒细胞减少；肾功能不全减量</td></tr>
+    <tr><td class="n">硫酸镁</td><td>其他</td><td>抑制 EAD（早期后除极）→ 特异性终止 TdP；稳定心肌细胞膜</td><td>25–50 mg/kg IV 缓推 10–20min（TdP 一线）；维持 20–50 mg/kg/h</td><td>TdP（尖端扭转型室速，一线）、地高辛中毒（辅助）、低镁血症</td><td>高镁血症（反射消失 / 呼吸抑制 / 低血压）；监测血镁；肾功能不全减量；钙剂可拮抗</td></tr>
+    <tr><td class="n">伊伐布雷定</td><td>其他</td><td>选择性 If 通道抑制剂（窦房结起搏电流）→ 减慢窦率，<strong>不影响收缩力和传导</strong></td><td>口服 0.1–0.2 mg/kg/d 分 2 次（起始 0.05，逐步加量）</td><td>难治性 AT、JET（最新证据，可单药或联合）；不适合 β 阻滞剂者（心衰 / 低血压）</td><td>新生儿数据有限（个案 / 小样本）；闪光幻视（视网膜 If 通道）；心动过缓；肝功能不全减量；不能用于 cAVB（无窦率可降）</td></tr>
+    <tr><td class="n">异丙肾上腺素</td><td>其他</td><td>非选择性 β1/β2 激动剂 → 提高窦率和交界区自律性、缩短 QT</td><td>0.05–1 μg/kg/min IV 泵注（逐步滴定）</td><td>cAVB（临时提高室率）、TdP（提高心率缩短 QT）、症状性心动过缓</td><td>心动过速、心肌耗氧增加、低血压（β2 血管扩张）、心律失常；需持续心电监护；<em>不可用于快速心律失常</em></td></tr>
+    <tr><td class="n">阿托品</td><td>其他</td><td>M 胆碱受体拮抗剂 → 解除迷走神经对心脏的抑制 → 提高窦率、加快 AV 传导</td><td>0.02 mg/kg IV/IO/ET（最小 0.1 mg）；可重复 5min</td><td>迷走性心动过缓、房室结水平传导阻滞、胆碱能药物中毒</td><td>对希氏束以下 cAVB 无效；心动过速、口干、尿潴留、发热；新生儿 &lt;0.1 mg 可致反常心动过缓</td></tr>
+    <tr class="ban-row"><td class="n">维拉帕米</td><td>IV（钙阻）</td><td>L 型钙通道阻滞 → 减慢 AV 传导、扩张血管、负性肌力</td><td><em><strong>新生儿禁用！</strong></em></td><td>（成人 / 儿童 SVT）</td><td><em><strong>新生儿绝对禁用</strong></em>：可致严重低血压、休克、心脏停搏（新生儿心肌依赖钙内流维持收缩力）；1 岁以下避免使用</td></tr>
+  </table>
+  </div>
+
+  <h3 id="c6-3"><span class="sn">6.3</span>电复律与除颤</h3>
+  <div class="blk">
+    <p><strong>同步 vs 非同步：</strong>同步放电靠 R 波触发，避开 T 波终末部的易颤期——用于一切 QRS 可识别的心动过速（SVT / VT / 房扑不稳定时）；<strong>VF / 无脉 VT 的 QRS 无法识别，必须用非同步除颤</strong>。</p>
+    <p><strong>能量：</strong>同步 0.5–1 J/kg 起、无效 2 J/kg（递增逻辑：首次低能量足以终止折返，失败即翻倍）；除颤 <strong>4 J/kg</strong>。</p>
+    <p><strong>电极板：</strong>前后位或前侧位，导电耦合充分、两板不要相互接触。</p>
+    <p><strong>镇静：</strong>已稳定的患儿可快速镇静后再复律；<strong>不稳定者不因等待镇静延迟</strong>。</p>
+    <p><strong>细颤：</strong>VF 波幅过低（细颤）时先 CPR 改善灌注变粗颤，再除颤。</p>
+  </div>
+
+  <h3 id="c6-4"><span class="sn">6.4</span>起搏治疗</h3>
+  <p><strong>临时桥接药物（等待起搏时）：</strong>异丙肾上腺素 0.05–1 μg/kg/min IV（β 激动剂，提高交界区自律性）；特布他林口服 / 皮下；阿托品 0.02 mg/kg（<strong>对希氏束以下阻滞无效</strong>）。<strong>起搏指征本身在 <a class="x" href="#d-cavb">5.5</a>（室率 55 红线）。</strong></p>
+  <p><strong>永久起搏：</strong>先天性 cAVB 多数最终需要；<strong>新生儿 / 小婴儿首选心外膜起搏器</strong>（胸骨下入路，囊袋置腹部）；体重 &gt;15kg 后可经静脉。术后 JET 房室不同步时，可临时<strong>心房超速起搏（AAT）</strong>恢复房室同步（<a class="x" href="#d-jet">5.4</a>）。</p>
+
+  <h3 id="c6-5"><span class="sn">6.5</span>绝对禁忌与高危陷阱</h3>
+  <div class="box warn">
+    <div class="tag">1 · 维拉帕米（含地尔硫卓，任何途径）</div>
+    <div class="text">可致顽固性低血压、休克、心脏停搏——新生儿心肌依赖钙内流维持收缩力（底层原因 1，<a class="x" href="#c1-2">1.2</a>）。<strong>宽 QRS 心动过速同样禁用。</strong>儿童 &gt;1 岁肌浆网成熟后才可用。</div>
+  </div>
+  <div class="box warn">
+    <div class="tag">2 · WPW 预激 + 房颤 / 房扑</div>
+    <div class="text">禁用<strong>腺苷、地高辛、维拉帕米</strong>——阻断房室结后，房颤 / 房扑的激动全部经旁路下传（旁路不该承担 1:1 传导），可致<strong>室颤</strong>。首选普鲁卡因胺（延长旁路不应期）或电复律。</div>
+  </div>
+  <div class="box warn">
+    <div class="tag">3 · LQTS</div>
+    <div class="text">禁用<strong>胺碘酮、索他洛尔</strong>及所有延长 QT 的药物（抗生素也要查 crediblemeds.org）——在复极已经延长的土壤上再加延长，等于直接播种 TdP。</div>
+  </div>
+  <h4>高危组合 / 陷阱清单</h4>
+  <ul>
+    <li><strong>Ic 类药用于房扑</strong>必须联合 AV 阻滞剂，否则 1:1 传导室率骤升（机制见 <a class="x" href="#d-afl">5.2</a>）</li>
+    <li><strong>腺苷</strong>必须大静脉快推 + 冲管，外周小静脉效果差（<a class="x" href="#c4-5">4.5</a>）</li>
+    <li><strong>未下传 PAC</strong> 易误诊为窦性心动过缓，看 T 波中隐藏 P′ 波（<a class="x" href="#c3-3">3.3</a>）</li>
+    <li><strong>cAVB 室率 55–70</strong> 伴低灌注即需起搏，不要等 &lt;55（<a class="x" href="#d-cavb">5.5</a>）</li>
+    <li><strong>术后 JET</strong> 核心是镇静 + 降温 + 纠正诱因，不是单纯加抗心律失常药（<a class="x" href="#d-jet">5.4</a>）</li>
+  </ul>
+
+  <h3 id="c6-6"><span class="sn">6.6</span>用药前必查</h3>
+  <ul>
+    <li><strong>12 导联 ECG</strong>：QRS 宽窄、P 波关系、QTc、预激波</li>
+    <li><strong>电解质</strong>：K⁺（4.0–5.5）、Mg²⁺、Ca²⁺——低钾低镁诱发心律失常和地高辛中毒</li>
+    <li><strong>血糖</strong>：β 阻滞剂可致低血糖，尤其禁食新生儿（底层原因 4，<a class="x" href="#c1-2">1.2</a>）</li>
+    <li><strong>肝功能 / 甲状腺功能</strong>：胺碘酮长期使用前基线</li>
+    <li><strong>地高辛血药浓度</strong>：维持 1–2 ng/ml，中毒 &gt;2.5</li>
+  </ul>
+</div>
+
+</section>
+
+<!-- ===== 翻页：第8页 长期管理 ===== -->
+<section class="pg" id="pg8" data-title="七 长期管理">
+<!-- ==================================================== 第七章 -->
+<div class="ch" id="c7">
+  <div class="k">第七章</div>
+  <h2>长期管理与随访</h2>
+  <div class="lead">急性期过后，管理的主线是"何时减药、何时停药、什么时候能让家长放心"——核心依据是 1.2 讲过的自愈规律。</div>
+
+  <h3 id="c7-1"><span class="sn">7.1</span>随访节奏</h3>
+  <div class="tl">
+    <div class="tl-item"><b>出院前</b><span>完成 12 导 ECG + 24h Holter + 心脏超声；明确心律失常类型和病因；制定药物方案和剂量；家长 CPR 培训；LQTS / cAVB 家属遗传咨询</span></div>
+    <div class="tl-item"><b>2 周</b><span>首次随访：评估药物耐受性（心率、血压、血糖）；地高辛血药浓度（如使用）；ECG 复查；调整剂量</span></div>
+    <div class="tl-item"><b>1–3 月</b><span>定期随访：ECG + Holter（每 1–3 月）；评估心律失常控制情况；胺碘酮监测肝功能 / 甲状腺功能；β 阻滞剂监测血糖 / 心动过缓</span></div>
+    <div class="tl-item"><b>6 月</b><span>评估是否可减量 / 停药（见 7.2）；cAVB 评估起搏指征</span></div>
+    <div class="tl-item"><b>1 岁</b><span>全面评估：Holter + 心脏超声；SVT 停药评估（无复发可停）；LQTS 终身 β 阻滞剂；遗传咨询（一级亲属筛查）</span></div>
+    <div class="tl-item"><b>长期</b><span>每年随访 ECG + Holter；LQTS 避免诱因（运动 / 声响）+ 终身用药；cAVB 起搏器随访（电池 / 阈值）；难治性心律失常 → 小儿电生理评估 → 射频消融（年龄 / 体重足够后）</span></div>
+  </div>
+
+  <h3 id="c7-2"><span class="sn">7.2</span>停药评估与转归（按型）</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:120px">类型</th><th>转归规律</th><th>停药逻辑</th></tr>
+    <tr><td class="n">SVT</td><td><strong>40% 旁路 1 岁内自行消失</strong></td><td>全量至 6 月龄、维持至 1 岁；无复发可试停，停药后 Holter 复评</td></tr>
+    <tr><td class="n">房扑</td><td>复发率低，多数婴儿期后不再发作</td><td>转复后维持 3–6 个月</td></tr>
+    <tr><td class="n">AT</td><td>多数异位灶在婴儿期成熟消退</td><td>维持 3–6 个月；无休止性需先确认心率控制、无心肌病</td></tr>
+    <tr><td class="n">术后 JET</td><td>数天至数周自行缓解</td><td><strong>不需长期用药</strong></td></tr>
+    <tr><td class="n">先天性 JET</td><td>不自愈</td><td>联合用药长期维持；部分年龄大后消融（80–85%）</td></tr>
+    <tr><td class="n">良性早搏</td><td>多数 1 岁内消失</td><td>Holter 示减少即可停随访；从不需要抗心律失常药</td></tr>
+    <tr><td class="n">LQTS</td><td>不自愈</td><td><strong>终身 β 阻滞剂</strong> + 避免诱因 + 一级亲属筛查</td></tr>
+    <tr><td class="n">cAVB</td><td>不自愈</td><td>按起搏指征管理（<a class="x" href="#d-cavb">5.5</a>）；起搏器长期随访</td></tr>
+  </table>
+  </div>
+</div>
+
+</section>
+
+<!-- ===== 翻页：第9页 附录 ===== -->
+<section class="pg" id="pg9" data-title="附录 · 查表">
+<!-- ==================================================== 附录 -->
+<div class="ch" id="cx">
+  <div class="k">附录</div>
+  <h2>查表</h2>
+  <div class="lead">值班时最常翻的三张表，加版本信息。</div>
+
+  <h3 id="apA"><span class="sn">A</span>体重换算速查表（1.0–4.0 kg）</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:118px">kg</th><th>1.0</th><th>1.5</th><th>2.0</th><th>2.5</th><th>3.0</th><th>3.5</th><th>4.0</th></tr>
+    <tr><td class="n">腺苷首剂<br><small style="font-weight:500;color:var(--gray)">0.2 mg/kg</small></td><td class="mono-cell">0.2</td><td class="mono-cell">0.3</td><td class="mono-cell">0.4</td><td class="mono-cell">0.5</td><td class="mono-cell">0.6</td><td class="mono-cell">0.7</td><td class="mono-cell">0.8</td></tr>
+    <tr><td class="n">腺苷最大<br><small style="font-weight:500;color:var(--gray)">0.3 mg/kg</small></td><td class="mono-cell">0.3</td><td class="mono-cell">0.45</td><td class="mono-cell">0.6</td><td class="mono-cell">0.75</td><td class="mono-cell">0.9</td><td class="mono-cell">1.05</td><td class="mono-cell">1.2</td></tr>
+    <tr><td class="n">电复律首剂<br><small style="font-weight:500;color:var(--gray)">0.5–1 J/kg</small></td><td class="mono-cell">0.5–1</td><td class="mono-cell">0.8–1.5</td><td class="mono-cell">1–2</td><td class="mono-cell">1.3–2.5</td><td class="mono-cell">1.5–3</td><td class="mono-cell">1.8–3.5</td><td class="mono-cell">2–4</td></tr>
+    <tr><td class="n">电复律递增<br><small style="font-weight:500;color:var(--gray)">2 J/kg</small></td><td class="mono-cell">2</td><td class="mono-cell">3</td><td class="mono-cell">4</td><td class="mono-cell">5</td><td class="mono-cell">6</td><td class="mono-cell">7</td><td class="mono-cell">8</td></tr>
+    <tr><td class="n">除颤<br><small style="font-weight:500;color:var(--gray)">4 J/kg</small></td><td class="mono-cell">4</td><td class="mono-cell">6</td><td class="mono-cell">8</td><td class="mono-cell">10</td><td class="mono-cell">12</td><td class="mono-cell">14</td><td class="mono-cell">16</td></tr>
+    <tr><td class="n">肾上腺素<br><small style="font-weight:500;color:var(--gray)">0.01–0.03 mg/kg</small></td><td class="mono-cell">0.01–0.03</td><td class="mono-cell">0.02–0.05</td><td class="mono-cell">0.02–0.06</td><td class="mono-cell">0.03–0.08</td><td class="mono-cell">0.03–0.09</td><td class="mono-cell">0.04–0.11</td><td class="mono-cell">0.04–0.12</td></tr>
+    <tr><td class="n">胺碘酮负荷<br><small style="font-weight:500;color:var(--gray)">5 mg/kg</small></td><td class="mono-cell">5</td><td class="mono-cell">7.5</td><td class="mono-cell">10</td><td class="mono-cell">12.5</td><td class="mono-cell">15</td><td class="mono-cell">17.5</td><td class="mono-cell">20</td></tr>
+    <tr><td class="n">硫酸镁<br><small style="font-weight:500;color:var(--gray)">25–50 mg/kg</small></td><td class="mono-cell">25–50</td><td class="mono-cell">38–75</td><td class="mono-cell">50–100</td><td class="mono-cell">63–125</td><td class="mono-cell">75–150</td><td class="mono-cell">88–175</td><td class="mono-cell">100–200</td></tr>
+  </table>
+  </div>
+  <p style="font-size:12px;color:var(--gray)">单位：腺苷 / 肾上腺素 / 胺碘酮 / 硫酸镁为 mg，电复律 / 除颤为 J。表外体重按 mg/kg 换算。给药前双人核对。</p>
+
+  <h3 id="apB"><span class="sn">B</span>急救剂量速查卡</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:96px">药物 / 措施</th><th>剂量</th><th>适应症</th><th>要点与红线</th></tr>
+    <tr><td class="n">腺苷</td><td><span class="mono">0.2 mg/kg</span> 大静脉 &lt;3s 快推 + 5ml 冲管；无效 +0.1，最大 <span class="mono">0.3 mg/kg</span></td><td>SVT 一线；诊断性（暴露 F 波 / P 波）</td><td><em>失败 90% 是推注问题</em>；不走脐血管；可致短暂停搏；WPW+房颤禁用</td></tr>
+    <tr><td class="n">同步电复律</td><td><span class="mono">0.5–1 → 2 J/kg</span></td><td>任何不稳定快速心律失常；SVT 二线</td><td><em>不因等待镇静延迟</em></td></tr>
+    <tr><td class="n">除颤</td><td><span class="mono">4 J/kg</span> 非同步</td><td>VF / 无脉 VT</td><td>之后 NRP 3:1 → 肾上腺素 → 胺碘酮</td></tr>
+    <tr><td class="n">胺碘酮</td><td>负荷 <span class="mono">5 mg/kg</span> IV 缓推 30–60min（≤15 mg/kg/d）；维持 <span class="mono">5–15 μg/kg/min</span>；口服 10–20 mg/kg/d</td><td>VT 一线、难治 SVT / AT / JET、术后 JET</td><td><em>LQTS 禁用</em>；监测肝功 / 甲功</td></tr>
+    <tr><td class="n">利多卡因</td><td>负荷 <span class="mono">1 mg/kg</span> → 维持 <span class="mono">20–50 μg/kg/min</span></td><td>VT（缺血相关）、除颤后</td><td>过量致惊厥 / 呼吸抑制；肝功不全减量</td></tr>
+    <tr><td class="n">硫酸镁</td><td><span class="mono">25–50 mg/kg</span> IV 缓推 10–20min；维持 20–50 mg/kg/h</td><td><em>TdP 一线</em>、地高辛中毒辅助</td><td>高镁致呼吸抑制；钙剂可拮抗</td></tr>
+    <tr><td class="n">普鲁卡因胺</td><td>负荷 <span class="mono">10–15 mg/kg</span> 缓推 30–60min；维持 20–80 μg/kg/min</td><td><em>WPW+房颤 / 房扑一线</em>、难治 SVT</td><td>快推低血压；延长 QT</td></tr>
+    <tr><td class="n">肾上腺素</td><td><span class="mono">0.01–0.03 mg/kg</span> IV/IO q3–5min</td><td>心跳骤停</td><td>NRP 流程内使用</td></tr>
+    <tr><td class="n">异丙肾上腺素</td><td><span class="mono">0.05–1 μg/kg/min</span> 泵注滴定</td><td>cAVB 桥接、TdP 提速</td><td><em>不可用于快速心律失常</em></td></tr>
+    <tr><td class="n">阿托品</td><td><span class="mono">0.02 mg/kg</span>（最小 0.1mg）</td><td>迷走性心动过缓</td><td>希氏束以下 cAVB 无效；&lt;0.1mg 反常心动过缓</td></tr>
+    <tr><td class="n">艾司洛尔</td><td>负荷 <span class="mono">100–500 μg/kg</span> → 维持 <span class="mono">25–200 μg/kg/min</span></td><td>需快速控制 / 耐受不确定时</td><td>t½ 约 9min，停药即恢复；监测低血糖</td></tr>
+    <tr><td class="n">普萘洛尔 IV</td><td><span class="mono">0.05–0.15 mg/kg</span> 缓推 ≥10min</td><td>SVT / AT / LQTS</td><td>低血糖；不可突停</td></tr>
+  </table>
+  </div>
+
+  <h3 id="apC"><span class="sn">C</span>值班口袋卡</h3>
+  <div class="sum">
+    <h3>核心八条</h3>
+    <ol>
+      <li><strong>先看稳定性</strong>——不稳定（低灌注 / 心衰 / 意识改变）立即电复律，不要先用药</li>
+      <li><strong>再看 QRS 宽窄</strong>——窄 → 室上性（SVT / AT / 房扑 / JET）；宽 → 一律先按 VT 处理</li>
+      <li><strong>SVT 三步法</strong>——冰水敷面 → 腺苷（大静脉快推 + 冲管）→ 二线药 / 电复律</li>
+      <li><strong>三大禁忌</strong>——维拉帕米新生儿禁用；WPW+房颤禁腺苷 / 地高辛；LQTS 禁胺碘酮 / 索他洛尔</li>
+      <li><strong>cAVB 红线 55</strong>——室率 &lt;55 立即起搏；55–70 伴低灌注也起搏；必查母亲抗 Ro/La</li>
+      <li><strong>LQTS 立即用药</strong>——QTc&gt;470 即启动普萘洛尔，不等基因结果；TdP 首选镁盐</li>
+      <li><strong>良性早搏不用治</strong>——单源偶发、无心脏病、无症状 → 安抚 + 随访 Holter</li>
+      <li><strong>新生儿不是小成人</strong>——传导系统未成熟、旁路 40% 自行消失、维拉帕米禁用、CPR 按 3:1 非 15:2</li>
+    </ol>
+    <div class="box mn" style="margin-bottom:0">
+      <div class="tag">终极口诀</div>
+      <div class="text">稳不稳 → 宽窄 → 冰苷电 → 查病因 → 纠诱因 → 记禁忌 → 勤随访。新生儿心律失常，冷静分层，预后大多好。</div>
+    </div>
+  </div>
+
+  <h3 id="apD"><span class="sn">D</span>版本与参考</h3>
+  <p style="font-size:13px">深度版 v4.2 · 2026-09-28。结构：总论 → 基础 → 方法 → 急症 → 各论 → 治疗学 → 长期管理 → 附录。同一文件自适应：桌面为左侧目录双栏，手机为顶栏 + 章节条 + 抽屉目录。</p>
+  <p style="font-size:13px">主要参考：AHA/ACC/HRS 心律失常指南（2015/2020）· 欧洲小儿心律失常管理立场声明（2022）· 新生儿心律失常诊疗专家共识 · UpToDate Neonatal arrhythmias · PubMed 相关文献。</p>
+  <p style="font-size:13px">仅供专业医务人员参考，具体诊疗请结合临床判断和上级医师指导。</p>
+</div>
+
+</section>
+
+</main>
+</div>
+
+<script>
+// 桌面=连续 monograph；手机=按章翻页 + 长图模式；scrollspy 全局高亮
+(function(){
+  const mq=matchMedia('(max-width:1000px)');
+  const pages=[...document.querySelectorAll('.pg')];
+  const links=[...document.querySelectorAll('.toc a[href^="#"], .drawer a[href^="#"]')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const chips=[...document.querySelectorAll('.chips a')];
+  const cur=document.getElementById('mcur');
+  const chipBar=document.getElementById('chips');
+  const pNum=document.getElementById('pNum'),pTitle=document.getElementById('pTitle');
+  const pvBtn=document.getElementById('pvBtn'),nxBtn=document.getElementById('nxBtn');
+  const lsBtn=document.getElementById('lsBtn');
+  const chMap={c5b:'c5'}; // 各论续页映射回同一章 chip
+  let curIdx=0;
+
+  function setChip(chId){
+    chips.forEach(c=>c.classList.toggle('on',c.dataset.ch===chId));
+    const act=chips.find(c=>c.dataset.ch===chId);
+    if(act&&chipBar){chipBar.scrollLeft=act.offsetLeft-chipBar.clientWidth/2+act.offsetWidth/2;}
+  }
+  function show(i,scroll){
+    i=Math.max(0,Math.min(pages.length-1,i));
+    curIdx=i;
+    pages.forEach((p,j)=>p.classList.toggle('on',j===i));
+    if(pNum){pNum.textContent=(i+1)+' / '+pages.length;pTitle.textContent=pages[i].dataset.title;}
+    if(pvBtn)pvBtn.disabled=(i===0);
+    if(nxBtn)nxBtn.disabled=(i===pages.length-1);
+    if(scroll!==false)window.scrollTo(0,0);
+    const chEl=pages[i].querySelector('.ch');
+    setChip(chEl?(chMap[chEl.id]||chEl.id):'top');
+  }
+  function applyMode(){
+    const pm=mq.matches;
+    document.body.classList.toggle('pagemode',pm&&!document.body.classList.contains('longshot'));
+    if(!pm){pages.forEach(p=>p.classList.add('on'));return;}
+    show(curIdx,false);
+  }
+
+  /* scrollspy：高亮目录/抽屉 + 顶栏当前节名 */
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        const id=e.target.id;
+        links.forEach(l=>l.classList.remove('on'));
+        let title='';
+        const a=map.get(id);
+        if(a){a.classList.add('on');title=a.textContent;}
+        if(cur&&title)cur.textContent=title;
+        const sec=document.getElementById(id);
+        const ch=sec&&sec.closest?sec.closest('.ch'):null;
+        if(ch)setChip(chMap[ch.id]||ch.id);
+      }
+    });
+  },{rootMargin:'-8% 0px -82% 0px'});
+  document.querySelectorAll('.doc [id]').forEach(s=>{if(map.has(s.id))obs.observe(s)});
+
+  /* 跨页锚点路由：点目录/交叉引用 → 先翻到所在页再滚动 */
+  function pageOf(id){
+    const el=document.getElementById(id);
+    const pg=el&&el.closest?el.closest('.pg'):null;
+    return pg?pages.indexOf(pg):-1;
+  }
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a[href^="#"]');
+    if(!a)return;
+    if(document.body.classList.contains('longshot'))return; // 长图全展开，默认锚点即可
+    if(!mq.matches)return;                                  // 桌面连续版
+    const id=a.getAttribute('href').slice(1);
+    const pi=pageOf(id);
+    if(pi<0)return;
+    if(pi!==curIdx){
+      e.preventDefault();
+      show(pi);
+      requestAnimationFrame(()=>{
+        const el=document.getElementById(id);
+        if(el)el.scrollIntoView({behavior:'instant',block:'start'});
+      });
+    }
+  });
+
+  /* 翻页按钮 */
+  if(pvBtn)pvBtn.addEventListener('click',()=>show(curIdx-1));
+  if(nxBtn)nxBtn.addEventListener('click',()=>show(curIdx+1));
+
+  /* 长图模式：全部展开成连续长文，便于滚动截屏分享 */
+  if(lsBtn)lsBtn.addEventListener('click',()=>{
+    const on=document.body.classList.toggle('longshot');
+    lsBtn.textContent=on?'✕ 退出长图':'⛶ 长图';
+    if(on){pages.forEach(p=>p.classList.add('on'));window.scrollTo(0,0);}
+    else show(curIdx);
+    applyMode();
+  });
+
+  /* 抽屉开合 */
+  const btn=document.getElementById('menuBtn'),mask=document.getElementById('mask');
+  const close=()=>document.body.classList.remove('navopen');
+  if(btn)btn.addEventListener('click',()=>document.body.classList.toggle('navopen'));
+  if(mask)mask.addEventListener('click',close);
+  document.querySelectorAll('.drawer a').forEach(a=>a.addEventListener('click',close));
+
+  if(mq.addEventListener)mq.addEventListener('change',applyMode);
+  else if(mq.addListener)mq.addListener(applyMode);
+  applyMode();
+})();
+</script>
+</body>
+</html>
